@@ -7,9 +7,11 @@
   <body>
     <div class="container">
       <div class="page">
-        <div class="title">Register</div>
+        <img class="logo" src="./assets/images/instagram_cursive.png"/>
+        <h2 class="description">Sign up to see photos and videos from your friends.</h2>
         <form>
           <input type="text" id="email" placeholder="Email" />
+          <input type="text" id="fullName" placeholder="Full Name" />
           <input type="text" id="username" placeholder="Username" />
           <input type="text" id="password" placeholder="Password" />
           <input
@@ -17,10 +19,9 @@
             id="confirmPassword"
             placeholder="Confirm Password"
           />
-          <button>Create Account</button>
-          <div class="signup">
+          <div class="terms">
             <p>
-              View Instagram's<a
+              Upon creating an account, you are agreeing to Instagram's<a
                 href="https://youtu.be/dQw4w9WgXcQ"
                 data-test="termsAndConditions"
                 target="_blank"
@@ -28,6 +29,10 @@
               >
             </p>
           </div>
+          <button>Create Account</button>
+          <div class="signup">
+            <p>Have an account?<a href="./login.html" data-test="logIn">Log in</a></p>
+        </div>
         </form>
       </div>
     </div>
