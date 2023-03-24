@@ -151,6 +151,15 @@ body {
 .username {
     width: 100%;
     overflow: hidden;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 5px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.profile-pic .username {
+    width: 100%;
+    overflow: hidden;
     text-align: left;
     font-size: 12px;
     margin-top: 5px;
