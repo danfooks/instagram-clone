@@ -157,16 +157,6 @@ body {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.profile-pic .username {
-    width: 100%;
-    overflow: hidden;
-    text-align: left;
-    font-size: 12px;
-    margin-top: 5px;
-    padding-left: 10px;
-    color: rgba(0, 0, 0, 0.5);
-}
-
 .post {
     width: 100%;
     height: auto;
@@ -188,6 +178,8 @@ body {
     width: auto;
     font-weight: bold;
     color: #000;
+    text-align: left;
+    padding-left: 10px;
     font-size: 14px;
     margin: 5px 50px 0px 0px; /*  top right bottom left */
 }
