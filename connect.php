@@ -3,9 +3,9 @@ ConnectDB();
 
 function ConnectDB() {
         $hostname = 'elvis.rowan.edu';
-        $username = 'heitma24';
-        $password = '1Sady8TE2!';
-        $dbname = 'heitma24';
+        $username = 'fooksd3';
+        $password = '1MuguVA87!';
+        $dbname = 'fooksd3';
 
         try {
                 $dbh = new PDO("mysql:host=$hostname;dbname=$dbname",
