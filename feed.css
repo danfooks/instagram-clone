@@ -364,4 +364,20 @@ body {
     .right-col, .search-box {
         display: none;
     }
+    .nav-wrapper,
+    .wrapper {
+        width: 90%;
+    }
+    .wrapper {
+        display: block;
+    }
+}
+
+@media (max-width: 500px) {
+    .nav-items .icon {
+        margin: 0 5px;
+    }
+    .post-image {
+        height: 300px;
+    }
 }
