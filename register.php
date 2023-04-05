@@ -12,14 +12,15 @@
         <h2 class="description">
           Sign up to see photos and videos from your friends.
         </h2>
-        <form>
-          <input type="text" id="email" placeholder="Email" />
-          <input type="text" id="fullName" placeholder="Full Name" />
-          <input type="text" id="username" placeholder="Username" />
-          <input type="text" id="password" placeholder="Password" />
+        <form action="./verifyEmail.php" method="post">
+          <input type="text" id="email" name="email" placeholder="Email" />
+          <input type="text" id="fullName" name="fullName" placeholder="Full Name" />
+          <input type="text" id="username" name="username" placeholder="Username" />
+          <input type="text" id="password" name="password" placeholder="Password" />
           <input
             type="text"
             id="confirmPassword"
+            name="confirmPassword"
             placeholder="Confirm Password"
           />
           <div class="terms">
