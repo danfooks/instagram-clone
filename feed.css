@@ -49,10 +49,10 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 200px;
-    height: 25px;
+    height: 35px;
     background: #fafafa;
     border: 1px solid #dfdfdf;
-    border-radius: 2px;
+    border-radius: 3px;
     color: rgba(0,0,0,0.5);
     text-align: center;
     text-transform: capitalize;
@@ -358,6 +358,175 @@ body {
     color: rgba(0, 0, 0, 0.5);
     font-weight: 700;
     margin: 20px 0;
+}
+
+ /* New Post Modal CSS */
+ .new-post-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+  }
+  
+  /* Modal Content/Box */
+  .new-post-modal-content {
+    background-color: #ffffff;
+    margin: 50px auto; /* 50px from the top and centered */
+    padding: 24px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    width: 598px; /* Fixed width */
+    position: relative; /* Make the X button position relative to this container */
+  }
+
+  .center {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-input {
+    width:350px;
+    padding:20px;
+    background:#fff;
+  }
+
+  .form-input img {
+    width:100%;
+    display:none;
+    margin-bottom:30px;
+  }
+
+  .form-input input {
+    display:none;
+  }
+  
+  /* Close Button */
+  .close {
+    color: #757070;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 0;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 10px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  /* Form Label */
+  .new-post-modal label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #262626;
+  }
+
+  /* Form Input Label */
+  .input-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 12px;
+    color: #262626;
+  }
+
+  /* Upload Image Button */
+  .upload-image-label-button {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    background: #dadce2;
+    border-radius: 5px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    cursor: pointer;
+    padding-top: 15px;
+    padding-right: 120px;
+    padding-left: 30px;
+    white-space: nowrap;
+    margin-left: 80px;
+  }
+  
+  /* Form Input/Textarea */
+  .new-post-modal input[type="text"],
+  .new-post-modal textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border-radius: 5px;
+    border: 1px solid #dbdbdb;
+    font-family: 'roboto', sans-serif;
+    font-size: 14px;
+    background-color: #fafafa;
+    color: #262626;
+  }
+  
+  /* Form Textarea */
+  .input-textarea::placeholder {
+    color: #8e8e8e;
+    font-size: 14px;
+  }
+  
+  /* Form Submit Button */
+  .new-post-modal input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 3px;
+    background-color: #0095f6;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  form button {
+    border: none;
+    height: 40px;
+    background: #043fff;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #fff;
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    outline: none;
+    cursor: pointer;
+    justify-content: center;
+    margin-left: 180px;
+    margin-right: 180px;
+}
+
+    form button:active {
+    background: #2c58fe;
+    transform: scaleX(0.995);
 }
 
 @media (max-width: 1100px) {
