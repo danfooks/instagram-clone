@@ -17,6 +17,8 @@ if ( $_POST['password'] != $_POST['confirmPassword'] ) {
     die("Passwords do not match. Please try again.");
 }
 
+// php to send info to DB in try/catch
+
 
 # UNCOMMENT THIS LINE FOR A SYNTAX ERROR TO STOP EMAIL GOING OUT
 
@@ -28,11 +30,11 @@ $myemail = "fooksd3@elvis.rowan.edu";
 
 // Put together the confirmation ID:
 $now = time();
-$confirmcode = sha1("confirmation" . $now . $_POST['email1']);
+$confirmcode = sha1("confirmation" . $now . $_POST['email']);
 
 // put together the email:
 $to      = $_POST['email'];
-$subject = "$site: Verify Your Registration.";
+$subject = "$site: Verify Your New Account";
 $headers = "From: $myemail \r\n" .
            "Reply-To: $myemail \r\n" .
            'X-Mailer: PHP/' . phpversion() ;
