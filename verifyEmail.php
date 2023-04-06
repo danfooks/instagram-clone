@@ -2,7 +2,10 @@
 // checkemail.php
 //
 // Copied from:  D Provine, 4 August 2013
-
+        if (!include('connect.php')) {
+                die('error finding connect file');
+        }
+        $dbh = ConnectDB();
 
 // Check the form was filled in correctly
 if ( !isset($_POST['email']) ||
@@ -17,8 +20,29 @@ if ( $_POST['password'] != $_POST['confirmPassword'] ) {
     die("Passwords do not match. Please try again.");
 }
 
-// php to send info to DB in try/catch
+$email = $_POST['email'];
+$fullName = $_POST['fullName'];
+$username = $_POST['username'];
+$password = $_POST['password'];
 
+// php to send info to DB in try/catch
+try {
+	$sql  = "INSERT INTO User values( ";
+	$sql .=	"default, :username, :fullName, ";
+	$sql .=	"default, :email, :password, ";
+	$sql .=	"default, default, default)";
+        $stmt = $dbh->prepare($sql);
+	$stmt->bindParam(':email',$email);
+	$stmt->bindParam(':fullName',$fullName);
+	$stmt->bindParam(':username',$username);
+	$stmt->bindParam(':password',$password);
+        $stmt->execute();
+
+        $stmt = null;
+}catch(Exception $e){
+        echo "Error";
+        echo $e->getMessage();
+}
 
 # UNCOMMENT THIS LINE FOR A SYNTAX ERROR TO STOP EMAIL GOING OUT
 
