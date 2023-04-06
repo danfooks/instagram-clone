@@ -1,3 +1,13 @@
+<?php
+// login.php
+// NOTE: PHP for starting session must appear before any HTML is
+// sent!
+
+session_start();
+
+$_SESSION['time']    = time();
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,9 +20,9 @@
       <div class="text">Log in to continue</div>
       <div class="page">
         <img class="logo" src="img/instagram_cursive.png"/>
-        <form>
-          <input type="text" id="username" placeholder="Username or email" />
-          <input type="password" id="password" placeholder="Password" />
+        <form action="./checkLogin.php">
+          <input type="text" id="username" name="username" placeholder="Username or email" />
+          <input type="password" id="password" name="password" placeholder="Password" />
           <button id="logIn">Log in</button>
         </form>
 
