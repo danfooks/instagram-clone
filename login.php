@@ -7,6 +7,7 @@ session_start();
 
 $_SESSION['time']    = time();
 
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,8 +21,8 @@ $_SESSION['time']    = time();
       <div class="text">Log in to continue</div>
       <div class="page">
         <img class="logo" src="img/instagram_cursive.png"/>
-        <form action="./checkLogin.php">
-          <input type="text" id="username" name="username" placeholder="Username or email" />
+        <form action="./checkLogin.php" method="post">
+          <input type="text" id="email" name="email" placeholder="Email" />
           <input type="password" id="password" name="password" placeholder="Password" />
           <button id="logIn">Log in</button>
         </form>

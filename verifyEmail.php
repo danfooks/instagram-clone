@@ -23,19 +23,20 @@ if ( $_POST['password'] != $_POST['confirmPassword'] ) {
 $email = $_POST['email'];
 $fullName = $_POST['fullName'];
 $username = $_POST['username'];
-$password = $_POST['password'];
+$plain_password = $_POST['password'];
 
+$hash_password = password_hash($plain_password, PASSWORD_DEFAULT);
 // php to send info to DB in try/catch
 try {
 	$sql  = "INSERT INTO User values( ";
 	$sql .=	"default, :username, :fullName, ";
 	$sql .=	"default, :email, :password, ";
-	$sql .=	"default, default, default)";
+	$sql .=	"default, default, default, default)";
         $stmt = $dbh->prepare($sql);
 	$stmt->bindParam(':email',$email);
 	$stmt->bindParam(':fullName',$fullName);
 	$stmt->bindParam(':username',$username);
-	$stmt->bindParam(':password',$password);
+	$stmt->bindParam(':password',$hash_password);
         $stmt->execute();
 
         $stmt = null;
