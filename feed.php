@@ -244,7 +244,7 @@
   <div class="new-post-modal-content">
     <span class="close">&times;</span>
     <h3>Create a New Post</h3>
-    <form>
+    <form action="./post.php" method="post">
       <div class="center">
         <div class="form-input">
           <div class="preview">
