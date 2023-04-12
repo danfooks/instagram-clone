@@ -34,7 +34,7 @@
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="#">Account</a>
-              <a class="dropdown-item" href="#">Log Out</a>
+              <a class="dropdown-item" onclick="logout()">Log Out</a>
             </div>
           </div>
 
@@ -277,6 +277,12 @@
     </div>
 
     <script>
+	function logout() {
+  	     <?php session_destroy(); ?>
+  	     // Redirect to the login page or any other page as needed
+  	     window.location = "login.php";
+	}
+
       // Populate image preview
       function showPreview(event){
         if(event.target.files.length > 0){
