@@ -13,9 +13,11 @@
         <img src="img/navLogo.PNG" class="brand-img" alt="" />
         <input type="text" class="search-box" placeholder="search" />
         <div class="nav-items">
-          <img src="img/home.PNG" class="icon" alt="" />
+
+          <img src="img/home.PNG" class="icon" alt=""/>
           <img src="img/messenger.PNG" class="icon" alt="" />
-          <img src="img/add.PNG" class="icon" alt="" />
+          <img src="img/add.PNG" class="icon" id="newPost" alt="" />
+
           <img src="img/explore.PNG" class="icon" alt="" />
           <img src="img/like.PNG" class="icon" alt="" />
           <div class="icon user-profile"></div>
@@ -225,5 +227,75 @@
         </div>
       </div>
     </section>
+
+    <!--Begin New Post Modal code-->
+<!-- The Modal -->
+<div id="newPostModal" class="new-post-modal">
+  <!-- Modal content -->
+  <div class="new-post-modal-content">
+    <span class="close">&times;</span>
+    <h3>Create a New Post</h3>
+    <form>
+      <div class="center">
+        <div class="form-input">
+          <div class="preview">
+            <img id="file-ip-1-preview" src="img/add.PNG">
+          </div>
+          <label for="file-ip-1" class="upload-image-label-button">Upload Image</label>
+          <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+        </div>
+      </div>
+      
+      <label for="location" class="input-label">Location</label>
+      <input type="text" id="location" name="location" placeholder="Add location">
+      
+      <label for="caption" class="input-label">Caption</label>
+      <textarea id="caption" name="caption" rows="3" placeholder="Write a caption..." class="input-textarea"></textarea>
+      <button>Share</button>
+    </form>
+  </div>
+</div>
+
+
+    </div>
+
+    <script>
+      // Populate image preview
+      function showPreview(event){
+        if(event.target.files.length > 0){
+            var src = URL.createObjectURL(event.target.files[0]);
+            var preview = document.getElementById("file-ip-1-preview");
+            preview.src = src;
+            preview.style.display = "block";
+        }
+      }
+
+      // Get the modal
+      var newPostModal = document.getElementById("newPostModal");
+      
+      // Get the button that opens the modal
+      var newPostButton = document.getElementById("newPost");
+      
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+      
+      // When the user clicks the button, open the modal 
+      newPostButton.onclick = function() {
+        newPostModal.style.display = "block";
+      }
+      
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        newPostModal.style.display = "none";
+      }
+      
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == newPostModal) {
+          newPostModal.style.display = "none";
+        }
+      }
+      </script>
+      <!--End New Post Modal code-->
   </body>
 </html>

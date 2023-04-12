@@ -1,4 +1,12 @@
 # instagram-clone
 An Instagram clone application with basic user functionality for Graduate Advanced Web Programming.
 
-Eric Heitmann
+Technologies:
+* HTML/CSS
+* JavaScript
+* PHP
+* mySQL
+
+Developers:
+* Dan Fooks
+* Eric Heitmann
