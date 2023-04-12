@@ -30,6 +30,14 @@
           <img src="img/explore.PNG" class="icon" alt="" />
           <img src="img/like.PNG" class="icon" alt="" />
           <div class="icon user-profile"></div>
+
+          <div class="dropdown">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Account</a>
+              <a class="dropdown-item" href="#">Log Out</a>
+            </div>
+          </div>
+
         </div>
       </div>
     </nav>
@@ -304,6 +312,24 @@
           newPostModal.style.display = "none";
         }
       }
+
+  // Get the dropdown element and menu
+  const dropdown = document.querySelector('.dropdown');
+  const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+  const userProfileIcon = document.querySelector('.icon.user-profile');
+
+  // Add a click event listener to the user profile icon
+  userProfileIcon.addEventListener('click', (event) => {
+    // Toggle the 'show' class on the dropdown menu
+    dropdownMenu.classList.toggle('show');
+  });
+
+  // Close the dropdown menu when the user clicks outside of it
+  window.addEventListener('click', (event) => {
+    if (!event.target.matches('.icon.user-profile') && !event.target.matches('.dropdown-menu a')) {
+      dropdownMenu.classList.remove('show');
+    }
+  });
       </script>
       <!--End New Post Modal code-->
   </body>
