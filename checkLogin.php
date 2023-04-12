@@ -43,7 +43,7 @@ print($stored_password);
 if ( password_verify( $password, $stored_password ) ) {
 	$_SESSION['userid'] = $user_id;
       	echo "<br>" . $_SESSION['userid'];
-	header("Location:./feed.html");
+	header("Location:./feed.php");
   } else {
       die("Incorrect Password");
   }
