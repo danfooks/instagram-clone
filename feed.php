@@ -252,14 +252,15 @@
   <div class="new-post-modal-content">
     <span class="close">&times;</span>
     <h3>Create a New Post</h3>
-    <form action="./post.php" method="post">
+    <form enctype="multipart/form-data" method="post" action="post.php">
       <div class="center">
         <div class="form-input">
           <div class="preview">
             <img id="file-ip-1-preview" src="img/add.PNG">
           </div>
           <label for="file-ip-1" class="upload-image-label-button">Upload Image</label>
-          <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+          <input type="file" id="file-ip-1" name="file-ip-1" 
+		onchange="showPreview(event);">
         </div>
       </div>
       
@@ -268,7 +269,7 @@
       
       <label for="caption" class="input-label">Caption</label>
       <textarea id="caption" name="caption" rows="3" placeholder="Write a caption..." class="input-textarea"></textarea>
-      <button>Share</button>
+      <input type="submit" value="Share"/>
     </form>
   </div>
 </div>
