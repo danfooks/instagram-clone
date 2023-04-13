@@ -21,9 +21,10 @@ $_SESSION['time']    = time();
       <div class="text">Log in to continue</div>
       <div class="page">
         <img class="logo" src="img/instagram_cursive.png"/>
-        <form action="./checkLogin.php" method="post">
+        <form id="loginForm" method="post">
           <input type="text" id="email" name="email" placeholder="Email" />
           <input type="password" id="password" name="password" placeholder="Password" />
+	  <div id="errorMessage"></div>
           <button id="logIn">Log in</button>
         </form>
 
@@ -32,5 +33,37 @@ $_SESSION['time']    = time();
         </div>
       </div>
     </div>
+
+    <script>
+	// Add an event listener to the login form
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // prevent default form submission
+
+  // Get the form data
+  const formData = new FormData(event.target);
+
+  // Send an AJAX request to check the user's credentials
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "checkLogin.php");
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      // If the request was successful, check the response from the server
+      const response = JSON.parse(xhr.responseText);
+      if (response.success) {
+        // If the login was successful, redirect to the feed page
+        window.location.href = "feed.php";
+      } else {
+        // If the login was unsuccessful, display an error message
+        document.getElementById("errorMessage").innerHTML = '<div class="error">Invalid username or password</div>';
+      }
+    } else {
+      // If the request failed, display an error message
+      document.getElementById("errorMessage").innerHTML = '<div class="error">An error occurred while processing your request</div>';
+    }
+  };
+  xhr.send(formData);
+});
+    </script>
+
   </body>
 </html>

@@ -7,7 +7,7 @@
 
 session_start();
 
-//THIS WORKS
+//THIS WORKS, potentiall remove this
 if ( !isset($_POST['email']) ||
      !isset($_POST['password'])
 ) {
@@ -18,8 +18,8 @@ if ( !isset($_POST['email']) ||
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-print("email: " . $email . "<br>");
-print("password: " . $password . "<br>");
+print("email: " . $email . "<br>"); // TODO: remove
+print("password: " . $password . "<br>"); // TODO: remove
 
 try {
         $sql  = "SELECT User_Id, Hash_Password, Verified from User WHERE Email = :email";
@@ -38,16 +38,18 @@ try {
         echo "Error";
         echo $e->getMessage();
 }
-print($user_id);
-print($stored_password);
+print($user_id);  // TODO: remove this
+print($stored_password); // TODO: remove this
 
 if ( password_verify( $password, $stored_password ) ) {
 	$_SESSION['userid'] = $user_id;
 	$_SESSION['verified'] = $verified;
       	echo "<br>" . $_SESSION['userid'];
+	echo json_encode(["success" => true]);
 	header("Location:./feed.php");
   } else {
-      die("Incorrect Password");
-  }
+      // die("Incorrect Password");
+      echo json_encode(["success" => false]);  
+}
 
 ?>
