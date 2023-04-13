@@ -10,3 +10,6 @@ Technologies:
 Developers:
 * Dan Fooks
 * Eric Heitmann
+
+Instructions:
+* Run `make` to set permissions for Uploaded photos
