@@ -33,6 +33,7 @@ try {
         $stmt2->bindParam(':user_id',$userid);
         $stmt2->execute();
 
+	$_SESSION['verified'] = 1;
 	header("Location:./feed.php");
 
         $stmt2 = null;

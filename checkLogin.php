@@ -22,7 +22,7 @@ print("email: " . $email . "<br>");
 print("password: " . $password . "<br>");
 
 try {
-        $sql  = "SELECT User_Id, Hash_Password from User WHERE Email = :email";
+        $sql  = "SELECT User_Id, Hash_Password, Verified from User WHERE Email = :email";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':email',$email);
         $stmt->execute();
@@ -31,6 +31,7 @@ try {
 
 	$user_id = $result['User_Id'];
     	$stored_password = $result['Hash_Password'];
+	$verified = $result['Verified'];
 	$stmt = null;
 
 }catch(Exception $e){
@@ -42,6 +43,7 @@ print($stored_password);
 
 if ( password_verify( $password, $stored_password ) ) {
 	$_SESSION['userid'] = $user_id;
+	$_SESSION['verified'] = $verified;
       	echo "<br>" . $_SESSION['userid'];
 	header("Location:./feed.php");
   } else {
