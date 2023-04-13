@@ -33,8 +33,8 @@
 
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Account</a>
-              <a class="dropdown-item" href="#">Log Out</a>
+              <a class="dropdown-item" href="./account.php">Account</a>
+              <a class="dropdown-item" onclick="logout()">Log Out</a>
             </div>
           </div>
 
@@ -183,7 +183,7 @@
               <p class="username">realdanfooks</p>
               <p class="sub-text">Current user</p>
             </div>
-            <button class="action-btn">Switch</button>
+            <button class="action-btn" onclick="logout()">Switch</button>
           </div>
           <p class="suggestion-text">Suggestions for you</p>
           <div class="profile-card">
@@ -277,6 +277,16 @@
     </div>
 
     <script>
+	  function logout() {
+  // Use AJAX to call a PHP script to destroy the session
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "logout.php", true);
+  xhr.send();
+  
+  // Redirect to the login page or any other page as needed
+  window.location = "login.php";
+}
+
       // Populate image preview
       function showPreview(event){
         if(event.target.files.length > 0){

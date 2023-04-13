@@ -38,7 +38,7 @@
           <button>Create Account</button>
           <div class="signup">
             <p>
-              Have an account?<a href="./login.html" data-test="logIn"
+              Have an account?<a href="./login.php" data-test="logIn"
                 >Log in</a
               >
             </p>

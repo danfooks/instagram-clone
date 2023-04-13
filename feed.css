@@ -276,6 +276,7 @@ body {
     font-size: 16px;
     color: rgb(0,162,255);
     opacity: 0.5;
+    cursor: pointer;
 }
 
 .reaction-wrapper {
@@ -551,6 +552,10 @@ body {
     color: #000;
     text-decoration: none;
     padding: 5px 0;
+  }
+
+  .dropdown-item {
+    cursor: pointer;
   }
   
   .dropdown-menu a:hover {
