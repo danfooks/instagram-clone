@@ -1,11 +1,9 @@
 <?php
 	session_start();
 
-       if ( ! isset($_SESSION['userid']) ) {
-		if($_SESSION['verified'] != 1) {
-       			header("Location:./login.php");
-           		exit();
-		}
+       if ( ! isset($_SESSION['userid']) || $_SESSION['verified'] != 1 ) {
+       		header("Location:./login.php");
+           	exit();
        }
 ?>
 
