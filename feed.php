@@ -259,7 +259,7 @@
             <img id="file-ip-1-preview" src="img/add.PNG">
           </div>
           <label for="file-ip-1" class="upload-image-label-button">Upload Image</label>
-          <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+          <input type="file" id="file-ip-1" name="file-ip-1" accept="image/*" onchange="showPreview(event);">
         </div>
       </div>
       
