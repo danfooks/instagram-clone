@@ -28,7 +28,7 @@ $_SESSION['time']    = time();
         </form>
 
         <div class="signup">
-            <p>Don't have an account?<a href="./register.html" data-test="signUp">Sign up</a></p>
+            <p>Don't have an account?<a href="./register.php" data-test="signUp">Sign up</a></p>
         </div>
       </div>
     </div>

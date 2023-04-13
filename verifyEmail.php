@@ -24,19 +24,30 @@ $email = $_POST['email'];
 $fullName = $_POST['fullName'];
 $username = $_POST['username'];
 $plain_password = $_POST['password'];
-
 $hash_password = password_hash($plain_password, PASSWORD_DEFAULT);
+
+$host = "elvis.rowan.edu";
+$site = "Instagram";
+$confirmsite = "/~heitma24/awp/Instagram/instagram-clone/checkVerify.php";
+$myemail = "fooksd3@elvis.rowan.edu";
+
+// Put together the confirmation ID:
+$now = time();
+$confirmcode = sha1("confirmation" . $now . $_POST['email']);
+
+
 // php to send info to DB in try/catch
 try {
 	$sql  = "INSERT INTO User values( ";
 	$sql .=	"default, :username, :fullName, ";
 	$sql .=	"default, :email, :password, ";
-	$sql .=	"default, default, default, default)";
+	$sql .=	"now(), :verify, default, default)";
         $stmt = $dbh->prepare($sql);
 	$stmt->bindParam(':email',$email);
 	$stmt->bindParam(':fullName',$fullName);
 	$stmt->bindParam(':username',$username);
 	$stmt->bindParam(':password',$hash_password);
+	$stmt->bindParam(':verify', $confirmcode);
         $stmt->execute();
 
         $stmt = null;
@@ -46,16 +57,6 @@ try {
 }
 
 # UNCOMMENT THIS LINE FOR A SYNTAX ERROR TO STOP EMAIL GOING OUT
-
-
-$host = "elvis.rowan.edu";
-$site = "Instagram";
-$confirmsite = "/~fooksd3/instagram/instagram-clone/confirm.php";
-$myemail = "fooksd3@elvis.rowan.edu";
-
-// Put together the confirmation ID:
-$now = time();
-$confirmcode = sha1("confirmation" . $now . $_POST['email']);
 
 // put together the email:
 $to      = $_POST['email'];
