@@ -5,6 +5,19 @@
        		header("Location:./login.php");
            	exit();
        }
+
+	if (!include('connect.php')) {
+                die('error finding connect file');
+        }
+        $dbh = ConnectDB();
+
+
+$userid = $_SESSION['userid'];
+
+        $sql  = "SELECT * from Post Join User using (User_Id) WHERE User_Id = :userid";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(':userid',$userid);
+        $stmt->execute();
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +110,21 @@
             </div>
           </div>
 
+
+
+<?php
+//BEGIN POST
+
+//STUFF LEFT TO HOOKUP:
+//PROFILE PIC
+//LIKES
+//COMMENTS
+//POST DATE
+//BASED ON FOLLOWING
+//CHRONOLOGICAL ORDER
+foreach($stmt->fetchAll() as $userPost){
+
+?>
           <div class="post">
             <div class="info">
               <div class="user">
@@ -104,13 +132,13 @@
                   <img src="img/seeds/dan.png" alt="" />
                 </div>
                 <div>
-                  <p class="username">realdanfooks</p>
-                  <p class="location">Venice Golf & Country Club</p>
+                 <p class="username"><?php echo $userPost['Username']; ?> </p>
+                  <p class="location"><?php echo $userPost['Post_location']; ?></p>
                 </div>
               </div>
               <img src="img/option.PNG" class="options" alt="" />
             </div>
-            <img src="img/seeds/running.png" class="post-image" alt="" />
+            <img src="<?php echo $userPost['FileLocation']; ?>" class="post-image" alt="" />
             <div class="post-content">
               <div class="reaction-wrapper">
                 <img src="img/like.PNG" class="icon" alt="" />
@@ -120,8 +148,8 @@
               </div>
               <p class="likes">1,012 likes</p>
               <p class="description">
-                <span>realdanfooks</span>2.5 miles in the books! Off to the
-                pool.
+                <span><?php echo $userPost['Username']; ?></span>
+                <?php echo $userPost['Caption']; ?>
               </p>
               <p class="post-time">2 minutes ago</p>
             </div>
@@ -135,45 +163,11 @@
               <button class="comment-btn">post</button>
             </div>
           </div>
-          <div class="post">
-            <div class="info">
-              <div class="user">
-                <div class="profile-pic">
-                  <img src="img/seeds/dan.png" alt="" />
-                </div>
-                <div>
-                  <p class="username">realdanfooks</p>
-                  <p class="location">Rowan University</p>
-                </div>
-              </div>
-              <img src="img/option.PNG" class="options" alt="" />
-            </div>
-            <img src="img/seeds/b&n.png" class="post-image" alt="" />
-            <div class="post-content">
-              <div class="reaction-wrapper">
-                <img src="img/like.PNG" class="icon" alt="" />
-                <img src="img/comment.PNG" class="icon" alt="" />
-                <img src="img/send.PNG" class="icon" alt="" />
-                <img src="img/save.PNG" class="icon save" alt="" />
-              </div>
-              <p class="likes">765 likes</p>
-              <p class="description">
-                <span>realdanfooks</span>A beautiful sunset from my apartment in
-                the 'Boro.
-              </p>
-              <p class="post-time">8 minutes ago</p>
-            </div>
-            <div class="comment-wrapper">
-              <img src="img/comment.PNG" class="icon" alt="" />
-              <input
-                type="text"
-                class="comment-box"
-                placeholder="Add a comment"
-              />
-              <button class="comment-btn">post</button>
-            </div>
-          </div>
-        </div>
+<?php
+}
+$stmt = null;
+//ENDPOST
+?>
         <div class="right-col">
           <div class="profile-card">
             <div class="profile-pic">
