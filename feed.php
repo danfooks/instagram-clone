@@ -14,7 +14,13 @@
 
 $userid = $_SESSION['userid'];
 
-        $sql  = "SELECT * from Post Join User using (User_Id) WHERE User_Id = :userid";
+        $sql  = "Select u.Profile_Pic_Location, p.Post_Location, u.Username, p.FileLocation, p.Post_Date, ";
+	$sql .= "(SELECT count(Like_Id) FROM Likes WHERE Post_Id = p.Post_Id) as 'numLikes' ";
+	$sql .= "From Post p ";
+	$sql .= "Join Follow f on (p.User_Id = f.Following_Id) ";
+	$sql .= "Join User u on (f.Following_Id = u.User_Id) ";
+	$sql .= "WHERE f.Follower_Id = :userid or p.User_Id = :userid ";
+	$sql .= "Order by Post_Date desc";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':userid',$userid);
         $stmt->execute();
@@ -116,12 +122,8 @@ $userid = $_SESSION['userid'];
 //BEGIN POST
 
 //STUFF LEFT TO HOOKUP:
-//PROFILE PIC
-//LIKES
 //COMMENTS
 //POST DATE
-//BASED ON FOLLOWING
-//CHRONOLOGICAL ORDER
 foreach($stmt->fetchAll() as $userPost){
 
 ?>
@@ -129,11 +131,11 @@ foreach($stmt->fetchAll() as $userPost){
             <div class="info">
               <div class="user">
                 <div class="profile-pic">
-                  <img src="img/seeds/dan.png" alt="" />
+                  <img src="<?php echo $userPost['Profile_Pic_Location']; ?>" alt="" />
                 </div>
                 <div>
                  <p class="username"><?php echo $userPost['Username']; ?> </p>
-                  <p class="location"><?php echo $userPost['Post_location']; ?></p>
+                  <p class="location"><?php echo $userPost['Post_Location']; ?></p>
                 </div>
               </div>
               <img src="img/option.PNG" class="options" alt="" />
@@ -146,12 +148,12 @@ foreach($stmt->fetchAll() as $userPost){
                 <img src="img/send.PNG" class="icon" alt="" />
                 <img src="img/save.PNG" class="icon save" alt="" />
               </div>
-              <p class="likes">1,012 likes</p>
+              <p class="likes"><?php echo $userPost['numLikes']; ?> Likes</p>
               <p class="description">
                 <span><?php echo $userPost['Username']; ?></span>
                 <?php echo $userPost['Caption']; ?>
               </p>
-              <p class="post-time">2 minutes ago</p>
+              <p class="post-time"><?php echo $userPost['Post_Date']; ?></p>
             </div>
             <div class="comment-wrapper">
               <img src="img/comment.PNG" class="icon" alt="" />
