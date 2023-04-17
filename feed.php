@@ -170,73 +170,72 @@ foreach($stmt->fetchAll() as $userPost){
 $stmt = null;
 //ENDPOST
 ?>
-        <div class="right-col">
-          <div class="profile-card">
-            <div class="profile-pic">
-              <img src="img/seeds/dan.png" alt="">
-            </div>
-            <div>
-              <p class="username">realdanfooks</p>
-              <p class="sub-text">Current user</p>
-            </div>
-            <button class="action-btn" onclick="logout()">Switch</button>
+      </div>
+      <div class="right-col">
+        <div class="profile-card">
+          <div class="profile-pic">
+            <img src="img/seeds/dan.png" alt="">
           </div>
-          <p class="suggestion-text">Suggestions for you</p>
-          <div class="profile-card">
-            <div class="profile-pic">
-              <img src="img/seeds/cover 1.png" alt="">
-            </div>
-            <div>
-              <p class="username">profprovine</p>
-              <p class="sub-text">Recommended</p>
-            </div>
-            <button class="action-btn">Follow</button>
+          <div>
+            <p class="username">realdanfooks</p>
+            <p class="sub-text">Current user</p>
           </div>
+          <button class="action-btn" onclick="logout()">Switch</button>
+        </div>
+        <p class="suggestion-text">Suggestions for you</p>
+        <div class="profile-card">
+          <div class="profile-pic">
+            <img src="img/seeds/cover 1.png" alt="">
+          </div>
+          <div>
+            <p class="username">profprovine</p>
+            <p class="sub-text">Recommended</p>
+          </div>
+          <button class="action-btn">Follow</button>
+        </div>
 
-          <div class="profile-card">
-            <div class="profile-pic">
-              <img src="img/seeds/cover 2.png" alt="">
-            </div>
-            <div>
-              <p class="username">eminem</p>
-              <p class="sub-text">Recommended</p>
-            </div>
-            <button class="action-btn">Follow</button>
+        <div class="profile-card">
+          <div class="profile-pic">
+            <img src="img/seeds/cover 2.png" alt="">
           </div>
-
-          <div class="profile-card">
-            <div class="profile-pic">
-              <img src="img/seeds/cover 3.png" alt="">
-            </div>
-            <div>
-              <p class="username">brucelee</p>
-              <p class="sub-text">Recommended</p>
-            </div>
-            <button class="action-btn">Follow</button>
+          <div>
+            <p class="username">eminem</p>
+            <p class="sub-text">Recommended</p>
           </div>
+          <button class="action-btn">Follow</button>
+        </div>
 
-          <div class="profile-card">
-            <div class="profile-pic">
-              <img src="img/seeds/cover 4.png" alt="">
-            </div>
-            <div>
-              <p class="username">pedropascal</p>
-              <p class="sub-text">Recommended</p>
-            </div>
-            <button class="action-btn">Follow</button>
+        <div class="profile-card">
+          <div class="profile-pic">
+            <img src="img/seeds/cover 3.png" alt="">
           </div>
-
-          <div class="profile-card">
-            <div class="profile-pic">
-              <img src="img/seeds/cover 6.png" alt="">
-            </div>
-            <div>
-              <p class="username">starwars</p>
-              <p class="sub-text">Recommended</p>
-            </div>
-            <button class="action-btn">Follow</button>
+          <div>
+            <p class="username">brucelee</p>
+            <p class="sub-text">Recommended</p>
           </div>
+          <button class="action-btn">Follow</button>
+        </div>
 
+        <div class="profile-card">
+          <div class="profile-pic">
+            <img src="img/seeds/cover 4.png" alt="">
+          </div>
+          <div>
+            <p class="username">pedropascal</p>
+            <p class="sub-text">Recommended</p>
+          </div>
+          <button class="action-btn">Follow</button>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-pic">
+            <img src="img/seeds/cover 6.png" alt="">
+          </div>
+          <div>
+            <p class="username">starwars</p>
+            <p class="sub-text">Recommended</p>
+          </div>
+          <button class="action-btn">Follow</button>
         </div>
       </div>
     </section>
