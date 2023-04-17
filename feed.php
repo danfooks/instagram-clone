@@ -5,6 +5,25 @@
        		header("Location:./login.php");
            	exit();
        }
+
+	if (!include('connect.php')) {
+                die('error finding connect file');
+        }
+        $dbh = ConnectDB();
+
+
+$userid = $_SESSION['userid'];
+
+        $sql  = "Select u.Profile_Pic_Location, p.Post_Location, u.Username, p.FileLocation, p.Post_Date, ";
+	$sql .= "(SELECT count(Like_Id) FROM Likes WHERE Post_Id = p.Post_Id) as 'numLikes' ";
+	$sql .= "From Post p ";
+	$sql .= "Join Follow f on (p.User_Id = f.Following_Id) ";
+	$sql .= "Join User u on (f.Following_Id = u.User_Id) ";
+	$sql .= "WHERE f.Follower_Id = :userid or p.User_Id = :userid ";
+	$sql .= "Order by Post_Date desc";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(':userid',$userid);
+        $stmt->execute();
 ?>
 
 <!DOCTYPE html>
@@ -97,20 +116,31 @@
             </div>
           </div>
 
+
+
+<?php
+//BEGIN POST
+
+//STUFF LEFT TO HOOKUP:
+//COMMENTS
+//POST DATE
+foreach($stmt->fetchAll() as $userPost){
+
+?>
           <div class="post">
             <div class="info">
               <div class="user">
                 <div class="profile-pic">
-                  <img src="img/seeds/dan.png" alt="" />
+                  <img src="<?php echo $userPost['Profile_Pic_Location']; ?>" alt="" />
                 </div>
                 <div>
-                  <p class="username">realdanfooks</p>
-                  <p class="location">Venice Golf & Country Club</p>
+                 <p class="username"><?php echo $userPost['Username']; ?> </p>
+                  <p class="location"><?php echo $userPost['Post_Location']; ?></p>
                 </div>
               </div>
               <img src="img/option.PNG" class="options" alt="" />
             </div>
-            <img src="img/seeds/running.png" class="post-image" alt="" />
+            <img src="<?php echo $userPost['FileLocation']; ?>" class="post-image" alt="" />
             <div class="post-content">
               <div class="reaction-wrapper">
                 <img src="img/like.PNG" class="icon" alt="" />
@@ -118,12 +148,12 @@
                 <img src="img/send.PNG" class="icon" alt="" />
                 <img src="img/save.PNG" class="icon save" alt="" />
               </div>
-              <p class="likes">1,012 likes</p>
+              <p class="likes"><?php echo $userPost['numLikes']; ?> Likes</p>
               <p class="description">
-                <span>realdanfooks</span>2.5 miles in the books! Off to the
-                pool.
+                <span><?php echo $userPost['Username']; ?></span>
+                <?php echo $userPost['Caption']; ?>
               </p>
-              <p class="post-time">2 minutes ago</p>
+              <p class="post-time"><?php echo $userPost['Post_Date']; ?></p>
             </div>
             <div class="comment-wrapper">
               <img src="img/comment.PNG" class="icon" alt="" />
@@ -135,45 +165,11 @@
               <button class="comment-btn">post</button>
             </div>
           </div>
-          <div class="post">
-            <div class="info">
-              <div class="user">
-                <div class="profile-pic">
-                  <img src="img/seeds/dan.png" alt="" />
-                </div>
-                <div>
-                  <p class="username">realdanfooks</p>
-                  <p class="location">Rowan University</p>
-                </div>
-              </div>
-              <img src="img/option.PNG" class="options" alt="" />
-            </div>
-            <img src="img/seeds/b&n.png" class="post-image" alt="" />
-            <div class="post-content">
-              <div class="reaction-wrapper">
-                <img src="img/like.PNG" class="icon" alt="" />
-                <img src="img/comment.PNG" class="icon" alt="" />
-                <img src="img/send.PNG" class="icon" alt="" />
-                <img src="img/save.PNG" class="icon save" alt="" />
-              </div>
-              <p class="likes">765 likes</p>
-              <p class="description">
-                <span>realdanfooks</span>A beautiful sunset from my apartment in
-                the 'Boro.
-              </p>
-              <p class="post-time">8 minutes ago</p>
-            </div>
-            <div class="comment-wrapper">
-              <img src="img/comment.PNG" class="icon" alt="" />
-              <input
-                type="text"
-                class="comment-box"
-                placeholder="Add a comment"
-              />
-              <button class="comment-btn">post</button>
-            </div>
-          </div>
-        </div>
+<?php
+}
+$stmt = null;
+//ENDPOST
+?>
         <div class="right-col">
           <div class="profile-card">
             <div class="profile-pic">
