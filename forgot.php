@@ -18,18 +18,20 @@ $_SESSION['time']    = time();
   </head>
   <body>
     <div class="container">
-      <div class="text">Log in to continue</div>
+      <div class="text">Password recovery</div>
       <div class="page">
         <img class="logo" src="img/instagram_cursive.png"/>
-        <form action="./checkLogin.php" method="post">
+        <form action="./forgotPasswordEmail.php" method="post">
+	  <div class="signup">
+	    <p>Enter the email address affiliated with your account to receive a recovery email.</p>
+	  </div>
           <input type="text" id="email" name="email" placeholder="Email" />
-          <input type="password" id="password" name="password" placeholder="Password" />
-          <button id="logIn">Log in</button>
+          <button id="sendRecovery">Send Recovery Link</button>
         </form>
 
         <div class="signup">
             <p>Don't have an account?<a href="./register.php" data-test="signUp">Sign up</a></p>
-	    <p><a href="./forgot.php" data-test="forgotPassword">Forgot password?</a></p>        
+	    <p><a href="./login.php" data-test="logIn">Log in</a></p>
 </div>
       </div>
     </div>
