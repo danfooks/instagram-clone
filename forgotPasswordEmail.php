@@ -24,7 +24,7 @@ $now = time();
 $confirmcode = sha1("confirmation" . $now . $_POST['email']);
 
 try {
-        $sql  = "SELECT User_Id FROM User WHERE email = ':email'";
+        $sql  = "SELECT User_Id FROM User WHERE email = :email";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
@@ -32,9 +32,26 @@ try {
         $result = $stmt->fetch();
         $userid = $result['User_Id'];
 
-        $stmt = null;
+	print($userid);
 
-        // put together the email:
+        $stmt = null;
+} catch (Exception $e) {
+        echo "Error";
+        echo $e->getMessage();
+}
+
+// php to send info to DB in try/catch
+
+if(! is_null($userid)){
+try {
+        $sql  = "INSERT INTO PasswordRecover values( ";
+        $sql .=        "default, :confirmcode, :userid)";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(':confirmcode', $confirmcode);
+        $stmt->bindParam(':userid', $userid);
+        $stmt->execute();
+
+	// put together the email:
         $to      = $_POST['email'];
         $subject = "$site: Password Recovery Link";
         $headers = "From: $myemail \r\n" .
@@ -47,24 +64,13 @@ try {
                 "please ignore this message.)\r\n";
 
         mail($to, $subject, $message, $headers);
-} catch (Exception $e) {
-        echo "Error";
-        echo $e->getMessage();
-}
 
-// php to send info to DB in try/catch
-try {
-        $sql  = "INSERT INTO PasswordRecover values( ";
-        $sql .=        "default, :confirmcode, :userid)";
-        $stmt = $dbh->prepare($sql);
-        $stmt->bindParam(':confirmcode', $confirmcode);
-        $stmt->bindParam(':userid', $userid);
-        $stmt->execute();
 
         $stmt = null;
 } catch (Exception $e) {
         echo "Error";
         echo $e->getMessage();
+}
 }
 ?>
 
