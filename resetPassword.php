@@ -21,7 +21,7 @@ $_SESSION['time']    = time();
       <div class="text">Create a new password</div>
       <div class="page">
         <img class="logo" src="img/instagram_cursive.png"/>
-        <form action="./checkLogin.php" method="post">
+        <form action="./resetPasswordAction.php" method="post">
           <input type="text" id="newPassword" name="newPassword" placeholder="New Password" />
           <input type="text" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
           <button id="changePassword">Change Password</button>

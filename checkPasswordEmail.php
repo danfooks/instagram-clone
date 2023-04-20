@@ -37,7 +37,7 @@ try {
         $stmt2->bindParam(':code',$confirm_code);
         $stmt2->execute();
 
-	header("Location:./feed.php");
+	header("Location:./resetPassword.php");
 
         $stmt2 = null;
 
