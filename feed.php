@@ -14,7 +14,7 @@
 
 $userid = $_SESSION['userid'];
 
-        $sql  = "Select u.Profile_Pic_Location, p.Post_Location, u.Username, p.FileLocation, p.Post_Date, u.User_Id, p.Caption, ";
+        $sql  = "Select u.Profile_Pic_Location, p.Post_Location, p.Post_Id, u.Username, p.FileLocation, p.Post_Date, u.User_Id, p.Caption, ";
 	$sql .= "(SELECT count(Like_Id) FROM Likes WHERE Post_Id = p.Post_Id) as 'numLikes' ";
 	$sql .= "From Post p ";
 	$sql .= "Join Follow f on (p.User_Id = f.Following_Id) ";
@@ -137,10 +137,12 @@ foreach($stmt->fetchAll() as $userPost){
                  <p class="username"><?php echo $userPost['Username']; ?> </p>
                   <p class="location"><?php echo $userPost['Post_Location']; ?></p>
                 </div>
-              </div>
+              </div><a href="viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
               <img src="img/option.PNG" class="options" alt="" />
             </div>
-            <img src="<?php echo $userPost['FileLocation']; ?>" class="post-image" alt="" />
+		<a href="viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
+            		<img src="<?php echo $userPost['FileLocation']; ?>" class="post-image" alt="" />
+		</a>
             <div class="post-content">
               <div class="reaction-wrapper">
                 <img src="img/like.PNG" class="icon" alt="" />
