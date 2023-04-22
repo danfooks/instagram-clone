@@ -15,6 +15,7 @@
 $userid = $_SESSION['userid'];
 $postid = $_GET['Post_Id'];
 
+$_SESSION['currentPost'] = $postid;
 //BEGIN POST INFO
 
         $sql  = "Select u.Profile_Pic_Location, p.Post_Location, p.Post_Id, u.Username, p.FileLocation, p.Post_Date, u.User_Id, p.Caption, ";
@@ -106,16 +107,15 @@ $postid = $_GET['Post_Id'];
 $stmt = null;
 //END POST INFO
 ?>
- 		<div class="comment-wrapper">
-                  <img src="img/comment.PNG" class="icon" alt="" />
-                  <input
-                    type="text"
-                    class="comment-box"
-                    placeholder="Add a comment"
-                  />
-                  <button class="comment-btn">post</button>
-                </div>
 
+
+		<form action="./addComment.php" method="post">
+ 		<div class="comment-wrapper">
+                  <img src="img/comment.PNG" class="icon" alt="">
+                  <input type="text" class="comment-box" placeholder="Add a comment" name="commentText"/>
+                  <button class="comment-btn">post</button>
+		</div>
+		</form>
 
 <?php
 
