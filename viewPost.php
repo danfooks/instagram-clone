@@ -15,6 +15,7 @@
 $userid = $_SESSION['userid'];
 $postid = $_GET['Post_Id'];
 
+$_SESSION['currentPost'] = $postid;
 //BEGIN POST INFO
 
         $sql  = "Select u.Profile_Pic_Location, p.Post_Location, p.Post_Id, u.Username, p.FileLocation, p.Post_Date, u.User_Id, p.Caption, ";
@@ -25,7 +26,7 @@ $postid = $_GET['Post_Id'];
         $stmt->bindParam(':postid',$postid);
         $stmt->execute();
 
-	$result = $stmt->fetch();
+        $result = $stmt->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,8 +35,8 @@ $postid = $_GET['Post_Id'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instagram</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png" />
-    <link rel="stylesheet" href="css/feed.css" />
-    <link rel="stylesheet" href="css/post.css" />
+    <link rel="stylesheet" href="feed.css" />
+    <link rel="stylesheet" href="post.css" />
   </head>
   <body>
     <nav class="navbar">
@@ -74,7 +75,7 @@ $postid = $_GET['Post_Id'];
 
             <div class="feed">
               <div class="post-content">
-              
+
                 <div class="info">
                   <div class="user">
                     <div class="profile-pic">
@@ -87,8 +88,8 @@ $postid = $_GET['Post_Id'];
                   </div>
                   <img src="img/option.PNG" class="options" alt="" />
                 </div>
-  
-  
+
+
                 <div class="reaction-wrapper">
                   <img src="img/like.PNG" class="icon" alt="" />
                   <img src="img/comment.PNG" class="icon" alt="" />
@@ -98,7 +99,7 @@ $postid = $_GET['Post_Id'];
                 <p class="likes"><?php echo $result['numLikes']; ?> likes</p>
                 <p class="description">
                   <span><?php echo $result['Username']; ?></span>
-			<?php echo $result['Caption']; ?>
+                        <?php echo $result['Caption']; ?>
                 </p>
                 <p class="post-time"><?php echo $result['Post_Date']; ?></p>
 
@@ -106,27 +107,26 @@ $postid = $_GET['Post_Id'];
 $stmt = null;
 //END POST INFO
 ?>
- 		<div class="comment-wrapper">
-                  <img src="img/comment.PNG" class="icon" alt="" />
-                  <input
-                    type="text"
-                    class="comment-box"
-                    placeholder="Add a comment"
-                  />
+
+
+                <form action="./addComment.php" method="post">
+                <div class="comment-wrapper">
+                  <img src="img/comment.PNG" class="icon" alt="">
+                  <input type="text" class="comment-box" placeholder="Add a comment" name="commentText"/>
                   <button class="comment-btn">post</button>
                 </div>
-
+                </form>
 
 <?php
 
-	$sql2  = "Select u.Profile_Pic_Location, u.Username, c.Comment_Text, c.Comment_Date from Comment c ";
+        $sql2  = "Select u.Profile_Pic_Location, u.Username, c.Comment_Text, c.Comment_Date from Comment c ";
         $sql2 .= "join User u using (User_Id)  where Post_Id = :postid ";
-	$sql2 .= "Order by Comment_Date Desc";
+        $sql2 .= "Order by Comment_Date Desc";
         $stmt = $dbh->prepare($sql2);
         $stmt->bindParam(':postid',$postid);
         $stmt->execute();
 
-	foreach($stmt->fetchAll() as $comment) {
+        foreach($stmt->fetchAll() as $comment) {
 
 ?>
                 <div class="comments">
@@ -136,15 +136,8 @@ $stmt = null;
                         <img src="<?php echo $comment['Profile_Pic_Location']; ?>" alt="" />
                       </div>
                       <div>
-<<<<<<< HEAD
-                        <div class="user-info">
-                          <p class="username">realdanfooks</p><p class="post-time">2 minutes ago</p>
-                        </div>
-                        <p class="comment">This is a great photo! I frequent to Venice and I am quite fond of the area. Let me know when you'll be there again!</p>
-=======
                         <p class="username"><?php echo $comment['Username']; ?></p>
                         <p class="comment"><?php echo $comment['Comment_Text']; ?></p>
->>>>>>> 1ca7115 (comments hooked up)
                       </div>
                     </div>
                   </div>
@@ -175,14 +168,14 @@ $stmt = null;
             <img id="file-ip-1-preview" src="img/add.PNG">
           </div>
           <label for="file-ip-1" class="upload-image-label-button">Upload Image</label>
-          <input type="file" id="file-ip-1" name="file-ip-1" 
-		onchange="showPreview(event);">
+          <input type="file" id="file-ip-1" name="file-ip-1"
+                onchange="showPreview(event);">
         </div>
       </div>
-      
+
       <label for="location" class="input-label">Location</label>
       <input type="text" id="location" name="location" placeholder="Add location">
-      
+
       <label for="caption" class="input-label">Caption</label>
       <textarea id="caption" name="caption" rows="3" placeholder="Write a caption..." class="input-textarea"></textarea>
       <input type="submit" value="Share"/>
@@ -194,12 +187,12 @@ $stmt = null;
     </div>
 
     <script>
-	  function logout() {
+          function logout() {
   // Use AJAX to call a PHP script to destroy the session
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "logout.php", true);
   xhr.send();
-  
+
   // Redirect to the login page or any other page as needed
   window.location = "login.php";
 }
@@ -216,23 +209,23 @@ $stmt = null;
 
       // Get the modal
       var newPostModal = document.getElementById("newPostModal");
-      
+
       // Get the button that opens the modal
       var newPostButton = document.getElementById("newPost");
-      
+
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
-      
-      // When the user clicks the button, open the modal 
+
+      // When the user clicks the button, open the modal
       newPostButton.onclick = function() {
         newPostModal.style.display = "block";
       }
-      
+
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
         newPostModal.style.display = "none";
       }
-      
+
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         if (event.target == newPostModal) {
