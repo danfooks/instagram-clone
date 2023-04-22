@@ -39,7 +39,7 @@
 .comments .info .profile-pic {
     height: 25px;
     width: 30px;
-    margin-bottom: 25px;
+    margin-bottom: 43px;
     padding: 0;
     background: none;
 }
@@ -56,6 +56,19 @@
 .comments .info .user {
     margin-bottom: 5px;
 }
+
+.user-info {
+    width: 200px;
+    display: flex;
+}
+
+.user-info p {
+    display: inline-block;
+}
+
+.user-info .post-time {
+    margin: 1.4px 0px 0px -40px; /*  top right bottom left */
+  }
 
 .comments .info .comment {
     width: auto;

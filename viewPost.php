@@ -97,7 +97,9 @@
                         <img src="img/seeds/dan.png" alt="" />
                       </div>
                       <div>
-                        <p class="username">realdanfooks</p>
+                        <div class="user-info">
+                          <p class="username">realdanfooks</p><p class="post-time">2 minutes ago</p>
+                        </div>
                         <p class="comment">This is a great photo! I frequent to Venice and I am quite fond of the area. Let me know when you'll be there again!</p>
                       </div>
                     </div>
