@@ -1,12 +1,32 @@
 <?php
-	session_start();
+        session_start();
 
        if ( ! isset($_SESSION['userid']) || $_SESSION['verified'] != 1 ) {
-       		header("Location:./login.php");
-           	exit();
+                header("Location:./login.php");
+                exit();
        }
-?>
 
+        if (!include('connect.php')) {
+                die('error finding connect file');
+        }
+        $dbh = ConnectDB();
+
+
+$userid = $_SESSION['userid'];
+$postid = $_GET['Post_Id'];
+
+//BEGIN POST INFO
+
+        $sql  = "Select u.Profile_Pic_Location, p.Post_Location, p.Post_Id, u.Username, p.FileLocation, p.Post_Date, u.User_Id, p.Caption, ";
+        $sql .= "(SELECT count(Like_Id) FROM Likes WHERE Post_Id = p.Post_Id) as 'numLikes' ";
+        $sql .= "From Post p ";
+        $sql .= "Join User u using (User_Id) where Post_Id = :postid";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(':postid',$postid);
+        $stmt->execute();
+
+	$result = $stmt->fetch();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,7 +68,7 @@
 
           <div class="post">
             <div class="post-feed">
-              <img src="img/seeds/running.png" class="post-image" alt="" />
+              <img src="<?php echo $result['FileLocation']; ?>" class="post-image" alt="" />
 
             </div>
 
@@ -58,11 +78,11 @@
                 <div class="info">
                   <div class="user">
                     <div class="profile-pic">
-                      <img src="img/seeds/dan.png" alt="" />
+                      <img src="<?php echo $result['Profile_Pic_Location']; ?>" alt="" />
                     </div>
                     <div>
-                      <p class="username">realdanfooks</p>
-                      <p class="location">Venice Golf & Country Club</p>
+                      <p class="username"><?php echo $result['Username']; ?></p>
+                      <p class="location"><?php echo $result['Post_Location']; ?></p>
                     </div>
                   </div>
                   <img src="img/option.PNG" class="options" alt="" />
@@ -75,13 +95,18 @@
                   <img src="img/send.PNG" class="icon" alt="" />
                   <img src="img/save.PNG" class="icon" alt="" />
                 </div>
-                <p class="likes">1,012 likes</p>
+                <p class="likes"><?php echo $result['numLikes']; ?> likes</p>
                 <p class="description">
-                  <span>realdanfooks</span>2.5 miles in the books! Off to the
-                  pool.
+                  <span><?php echo $result['Username']; ?></span>
+			<?php echo $result['Caption']; ?>
                 </p>
-                <p class="post-time">2 minutes ago</p>
-                <div class="comment-wrapper">
+                <p class="post-time"><?php echo $result['Post_Date']; ?></p>
+
+<?php
+$stmt = null;
+//END POST INFO
+?>
+ 		<div class="comment-wrapper">
                   <img src="img/comment.PNG" class="icon" alt="" />
                   <input
                     type="text"
@@ -90,84 +115,44 @@
                   />
                   <button class="comment-btn">post</button>
                 </div>
+
+
+<?php
+
+	$sql2  = "Select u.Profile_Pic_Location, u.Username, c.Comment_Text, c.Comment_Date from Comment c ";
+        $sql2 .= "join User u using (User_Id)  where Post_Id = :postid ";
+	$sql2 .= "Order by Comment_Date Desc";
+        $stmt = $dbh->prepare($sql2);
+        $stmt->bindParam(':postid',$postid);
+        $stmt->execute();
+
+	foreach($stmt->fetchAll() as $comment) {
+
+?>
                 <div class="comments">
                   <div class="info">
                     <div class="user">
                       <div class="profile-pic">
-                        <img src="img/seeds/dan.png" alt="" />
+                        <img src="<?php echo $comment['Profile_Pic_Location']; ?>" alt="" />
                       </div>
                       <div>
+<<<<<<< HEAD
                         <div class="user-info">
                           <p class="username">realdanfooks</p><p class="post-time">2 minutes ago</p>
                         </div>
                         <p class="comment">This is a great photo! I frequent to Venice and I am quite fond of the area. Let me know when you'll be there again!</p>
+=======
+                        <p class="username"><?php echo $comment['Username']; ?></p>
+                        <p class="comment"><?php echo $comment['Comment_Text']; ?></p>
+>>>>>>> 1ca7115 (comments hooked up)
                       </div>
                     </div>
-
-                    <div class="user">
-                      <div class="profile-pic">
-                        <img src="img/seeds/dan.png" alt="" />
-                      </div>
-                      <div>
-                        <p class="username">slimjim</p>
-                        <p class="comment">Only two miles? That is light work.</p>
-                      </div>
-                    </div>
-
-                    <div class="user">
-                      <div class="profile-pic">
-                        <img src="img/seeds/dan.png" alt="" />
-                      </div>
-                      <div>
-                        <p class="username">realdanfooks</p>
-                        <p class="comment">This is a great photo! I frequent to Venice and I am quite fond of the area. Let me know when you'll be there again!</p>
-                      </div>
-                    </div>
-
-                    <div class="user">
-                      <div class="profile-pic">
-                        <img src="img/seeds/dan.png" alt="" />
-                      </div>
-                      <div>
-                        <p class="username">realdanfooks</p>
-                        <p class="comment">This is a great photo! I frequent to Venice and I am quite fond of the area. Let me know when you'll be there again!</p>
-                      </div>
-                    </div>
-
-                    <div class="user">
-                      <div class="profile-pic">
-                        <img src="img/seeds/dan.png" alt="" />
-                      </div>
-                      <div>
-                        <p class="username">realdanfooks</p>
-                        <p class="comment">This is a great photo! I frequent to Venice and I am quite fond of the area. Let me know when you'll be there again!</p>
-                      </div>
-                    </div>
-
-                    <div class="user">
-                      <div class="profile-pic">
-                        <img src="img/seeds/dan.png" alt="" />
-                      </div>
-                      <div>
-                        <p class="username">realdanfooks</p>
-                        <p class="comment">This is a great photo! I frequent to Venice and I am quite fond of the area. Let me know when you'll be there again!</p>
-                      </div>
-                    </div>
-
-                    <div class="user">
-                      <div class="profile-pic">
-                        <img src="img/seeds/dan.png" alt="" />
-                      </div>
-                      <div>
-                        <p class="username">realdanfooks</p>
-                        <p class="comment">This is a great photo! I frequent to Venice and I am quite fond of the area. Let me know when you'll be there again!</p>
-                      </div>
-                    </div>
-
-
-                    
                   </div>
-                
+<?php
+}
+$stmt = null;
+//END Comment
+?>
               </div>
             </div>
           </div>
