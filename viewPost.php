@@ -81,7 +81,15 @@
                   pool.
                 </p>
                 <p class="post-time">2 minutes ago</p>
-
+                <div class="comment-wrapper">
+                  <img src="img/comment.PNG" class="icon" alt="" />
+                  <input
+                    type="text"
+                    class="comment-box"
+                    placeholder="Add a comment"
+                  />
+                  <button class="comment-btn">post</button>
+                </div>
                 <div class="comments">
                   <div class="info">
                     <div class="user">
@@ -159,15 +167,6 @@
                   </div>
                 
               </div>
-            </div>
-            <div class="comment-wrapper">
-              <img src="img/comment.PNG" class="icon" alt="" />
-              <input
-                type="text"
-                class="comment-box"
-                placeholder="Add a comment"
-              />
-              <button class="comment-btn">post</button>
             </div>
           </div>
           </div>
