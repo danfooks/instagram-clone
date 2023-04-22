@@ -33,7 +33,7 @@ $userid = $_SESSION['userid'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instagram</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png" />
-    <link rel="stylesheet" href="feed.css" />
+    <link rel="stylesheet" href="css/feed.css" />
   </head>
   <body>
     <nav class="navbar">
