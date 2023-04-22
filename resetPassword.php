@@ -14,7 +14,7 @@ $_SESSION['time']    = time();
   <head>
     <title>Instagram - Password Reset</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
-    <link rel="stylesheet" type="text/css" href="./login.css"/>
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
   </head>
   <body>
     <div class="container">
