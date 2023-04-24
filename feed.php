@@ -14,7 +14,7 @@
 
 $userid = $_SESSION['userid'];
 
-        $sql  = "Select u.Profile_Pic_Location, p.Post_Location, p.Post_Id, u.Username, p.FileLocation, p.Post_Date, u.User_Id, p.Caption, ";
+        $sql  = "Select DISTINCT u.Profile_Pic_Location, p.Post_Location, p.Post_Id, u.Username, p.FileLocation, p.Post_Date, u.User_Id, p.Caption, ";
 	$sql .= "(SELECT count(Like_Id) FROM Likes WHERE Post_Id = p.Post_Id) as 'numLikes' ";
 	$sql .= "From Post p ";
 	$sql .= "Join Follow f on (p.User_Id = f.Following_Id) ";
