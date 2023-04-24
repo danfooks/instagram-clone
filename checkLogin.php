@@ -18,9 +18,6 @@ if ( !isset($_POST['email']) ||
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-print("email: " . $email . "<br>");
-print("password: " . $password . "<br>");
-
 try {
         $sql  = "SELECT User_Id, Hash_Password, Verified from User WHERE Email = :email";
         $stmt = $dbh->prepare($sql);
@@ -38,16 +35,40 @@ try {
         echo "Error";
         echo $e->getMessage();
 }
-print($user_id);
-print($stored_password);
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instagram - Login</title>
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text">Log in to continue</div>
+      <div class="page">
+        <img class="logo" src="img/instagram_cursive.png"/>
+
+	<div class="error message">
+<?php
 
 if ( password_verify( $password, $stored_password ) ) {
-	$_SESSION['userid'] = $user_id;
-	$_SESSION['verified'] = $verified;
-      	echo "<br>" . $_SESSION['userid'];
-	header("Location:./feed.php");
+        $_SESSION['userid'] = $user_id;
+        $_SESSION['verified'] = $verified;
+        echo "<br>" . $_SESSION['userid'];
+        header("Location:./feed.php");
   } else {
-      die("Incorrect Password");
+      print("Incorrect Email or Password");
   }
 
 ?>
+	</div>
+        <div class="signup">
+            <p>Don't have an account?<a href="./register.php" data-test="signUp">Sign up</a>
+            <p><a href="./forgot.php" data-test="forgotPassword">Forgot password?</a></p>
+	</div>
+      </div>
+    </div>
+  </body>
+</html>
+
