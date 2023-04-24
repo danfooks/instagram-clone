@@ -45,7 +45,6 @@ try {
   </head>
   <body>
     <div class="container">
-      <div class="text">Log in to continue</div>
       <div class="page">
         <img class="logo" src="img/instagram_cursive.png"/>
 
