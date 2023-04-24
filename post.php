@@ -90,4 +90,5 @@ if (file_exists($targetname)) {
         die("Error copying ". $_FILES["file-ip-1"]["name"]);
     }
 }
+header("Location:./feed.php");
 ?>
