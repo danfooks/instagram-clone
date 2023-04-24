@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instagram - Login</title>
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text">Log in to continue</div>
+      <div class="page">
+        <img class="logo" src="img/instagram_cursive.png"/>
+
+	<div class="error">
 <?php
 // checkemail.php
 //
@@ -50,6 +64,8 @@ try {
 	$stmt->bindParam(':verify', $confirmcode);
         $stmt->execute();
 
+	echo "A confirmation code has been sent. Please check your email!";
+
         $stmt = null;
 }catch(Exception $e){
         echo "Error";
@@ -71,9 +87,15 @@ $message = "Welcome to $site!\r\n\r\n" .
            "just ignore this message.)\r\n";
 
 mail($to, $subject, $message, $headers);
+
 ?>
 
-<p>
-Down here you'd probably put a message like "I have sent email to
-the address you gave" or something.
-</p>
+	</div>
+        <div class="signup">
+            <p>Don't have an account?<a href="./register.php" data-test="signUp">Sign up</a></p>
+	    <p><a href="./forgot.php" data-test="forgotPassword">Forgot password?</a></p>        
+</div>
+      </div>
+    </div>
+  </body>
+</html>
