@@ -70,7 +70,7 @@ body {
 
 
   .container {
-    max-width: 800px;
+    max-width: 940px;
     margin: 0 auto;
   }
   
@@ -82,13 +82,14 @@ body {
   
   .col-4 {
     flex: 0 0 33.33%;
-    max-width: 33.33%;
+    max-width: 1000px;
     padding: 10px;
   }
   
   .col-4 img {
-    width: 100%;
-    height: auto;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
   }
 
   .button-container {
