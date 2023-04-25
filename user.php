@@ -1,3 +1,33 @@
+<?php
+        session_start();
+
+       if ( ! isset($_SESSION['userid']) || $_SESSION['verified'] != 1 ) {
+                header("Location:./login.php");
+                exit();
+       }
+
+        if (!include('connect.php')) {
+                die('error finding connect file');
+        }
+        $dbh = ConnectDB();
+
+
+$userid = $_SESSION['userid'];
+//BEGIN POST INFO
+
+        $sql  = "Select *, ";
+	$sql .= "(SELECT count(Follow_Id) FROM Follow WHERE Follower_Id = User_Id) as 'numFollowing', ";
+        $sql .= "(SELECT count(Follow_Id) FROM Follow WHERE Following_Id = User_Id) as 'numFollowers', ";
+        $sql .= "(SELECT count(Post_Id) FROM Post p WHERE u.User_Id = p.User_Id) as 'numPosts' ";
+        $sql .= "From User u WHERE User_Id = :userid ";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(':userid',$userid);
+        $stmt->execute();
+
+        $result = $stmt->fetch();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,15 +64,12 @@
     </nav>
 
     <div class="user-info">
-      <img src="img/seeds/dan.png" class="user-dp" alt="" />
+      <img src="<?php echo $result['Profile_Pic_Location']; ?>" class="user-dp" alt="" />
       <div class="info-container">
-        <h1 class="name">Dan Fooks</h1>
-        <p class="username">@realdanfooks</p>
+        <h1 class="name"><?php echo $result['Full_Name']; ?></h1>
+        <p class="username">@<?php echo $result['Username']; ?></p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
-          quisquam at id, inventore atque magnam itaque qui, veniam ab vel
-          fugiat repudiandae suscipit, quae accusamus molestiae blanditiis non
-          earum. Eligendi!
+          <?php echo $result['User_Bio']; ?>
         </p>
       </div>
     </div>
@@ -57,35 +84,42 @@
       <ul>
         <li>
           <a href="#">Posts</a>
-          <span>3</span>
+          <span><?php echo $result['numPosts']; ?></span>
         </li>
         <li>
           <a href="#">Following</a>
-          <span>767</span>
+          <span><?php echo $result['numFollowing']; ?></span>
         </li>
         <li>
           <a href="#">Followers</a>
-          <span>2054</span>
+          <span><?php echo $result['numFollowers']; ?></span>
         </li>
       </ul>
     </div>
 
     <div class="container">
-      <div class="row">
-        <div class="col-4"><img src="img/seeds/cover 1.png" /></div>
-        <div class="col-4"><img src="img/seeds/cover 2.png" /></div>
-        <div class="col-4"><img src="img/seeds/cover 3.png" /></div>
-      </div>
-      <div class="row">
-        <div class="col-4"><img src="img/seeds/cover 4.png" /></div>
-        <div class="col-4"><img src="img/seeds/cover 5.png" /></div>
-        <div class="col-4"><img src="img/seeds/cover 6.png" /></div>
-      </div>
-      <div class="row">
-        <div class="col-4"><img src="img/seeds/cover 7.png" /></div>
-        <div class="col-4"><img src="img/seeds/cover 8.png" /></div>
-        <div class="col-4"><img src="img/seeds/cover 9.png" /></div>
-      </div>
+<?php
+	$stmt = null;
+	$sql  = "Select FileLocation, Post_Id from Post ";
+        $sql .= "Where User_Id = :userid";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(':userid',$userid);
+        $stmt->execute();
+
+	foreach($stmt->fetchAll() as $userPost){
+?>
+
+        <div class="col-4">
+		<a href="viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
+		<img src="<?php echo $userPost['FileLocation']; ?>" />
+		</a>
+	</div>
+
+<?php
+}
+$stmt = null;
+?>
+
     </div>
 
     <!--Begin New Post Modal code-->
