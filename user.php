@@ -55,7 +55,7 @@ $userid = $_SESSION['userid'];
 
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="./account.php">Account</a>
+              <a class="dropdown-item" href="./user.php">Profile</a>
               <a class="dropdown-item" onclick="logout()">Log Out</a>
             </div>
           </div>
@@ -108,17 +108,16 @@ $userid = $_SESSION['userid'];
 
 	foreach($stmt->fetchAll() as $userPost){
 ?>
-
-        <div class="col-4">
+  <div class="col-4">
 		<a href="viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
 		<img src="<?php echo $userPost['FileLocation']; ?>" />
 		</a>
 	</div>
 
-<?php
-}
-$stmt = null;
-?>
+      <?php
+      }
+      $stmt = null;
+      ?>
 
     </div>
 
