@@ -19,7 +19,8 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 try {
-        $sql  = "SELECT User_Id, Hash_Password, Verified from User WHERE Email = :email";
+        $sql  = "SELECT User_Id, Hash_Password, Verified, IsAdmin ";
+	$sql .=	"from User WHERE Email = :email";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':email',$email);
         $stmt->execute();
@@ -29,6 +30,7 @@ try {
 	$user_id = $result['User_Id'];
     	$stored_password = $result['Hash_Password'];
 	$verified = $result['Verified'];
+	$isAdmin = $result['IsAdmin'];
 	$stmt = null;
 
 }catch(Exception $e){
@@ -54,6 +56,7 @@ try {
 if ( password_verify( $password, $stored_password ) ) {
         $_SESSION['userid'] = $user_id;
         $_SESSION['verified'] = $verified;
+	$_SESSION['isAdmin'] = $isAdmin;
         echo "<br>" . $_SESSION['userid'];
         header("Location:./feed.php");
   } else {
