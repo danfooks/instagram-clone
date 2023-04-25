@@ -14,16 +14,12 @@
 
 $userid = $_SESSION['userid'];
 
-        $sql  = "Select DISTINCT u.Profile_Pic_Location, p.Post_Location, p.Post_Id, u.Username, p.FileLocation, p.Post_Date, u.User_Id, p.Caption, ";
-	$sql .= "(SELECT count(Like_Id) FROM Likes WHERE Post_Id = p.Post_Id) as 'numLikes' ";
-	$sql .= "From Post p ";
-	$sql .= "Join Follow f on (p.User_Id = f.Following_Id) ";
-	$sql .= "Join User u on (f.Following_Id = u.User_Id) ";
-	$sql .= "WHERE f.Follower_Id = :userid or p.User_Id = :userid ";
-	$sql .= "Order by Post_Date desc";
+        $sql  = "Select Profile_Pic_Location from User WHERE User_Id = :userid";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':userid',$userid);
         $stmt->execute();
+
+	$result = $stmt->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +44,9 @@ $userid = $_SESSION['userid'];
 
           <img src="img/explore.PNG" class="icon" alt="" />
           <img src="img/like.PNG" class="icon" alt="" />
-          <div class="icon user-profile"></div>
+          <div class="icon user-profile">
+		<img src="<?php echo $result['Profile_Pic_Location']; ?>" style="max-width: 100%; pointer-events: none;"/>
+	  </div>
 
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -124,6 +122,17 @@ $userid = $_SESSION['userid'];
 //STUFF LEFT TO HOOKUP:
 //COMMENTS
 //POST DATE
+	$sql  = "Select DISTINCT u.Profile_Pic_Location, p.Post_Location, p.Post_Id, u.Username, p.FileLocation, p.Post_Date, u.User_Id, p.Caption, ";
+        $sql .= "(SELECT count(Like_Id) FROM Likes WHERE Post_Id = p.Post_Id) as 'numLikes' ";
+        $sql .= "From Post p ";
+        $sql .= "Join Follow f on (p.User_Id = f.Following_Id) ";
+        $sql .= "Join User u on (f.Following_Id = u.User_Id) ";
+        $sql .= "WHERE f.Follower_Id = :userid or p.User_Id = :userid ";
+        $sql .= "Order by Post_Date desc";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(':userid',$userid);
+        $stmt->execute();
+
 foreach($stmt->fetchAll() as $userPost){
 
 ?>
