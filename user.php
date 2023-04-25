@@ -12,7 +12,9 @@
         $dbh = ConnectDB();
 
 
-$userid = $_GET['userid'];
+$userid = $_SESSION['userid'];
+$pageid = $_GET['userid'];
+
 //BEGIN POST INFO
 
         $sql  = "Select *, ";
@@ -21,7 +23,7 @@ $userid = $_GET['userid'];
         $sql .= "(SELECT count(Post_Id) FROM Post p WHERE u.User_Id = p.User_Id) as 'numPosts' ";
         $sql .= "From User u WHERE User_Id = :userid ";
         $stmt = $dbh->prepare($sql);
-        $stmt->bindParam(':userid',$userid);
+        $stmt->bindParam(':userid',$pageid);
         $stmt->execute();
 
         $result = $stmt->fetch();
@@ -75,9 +77,27 @@ $userid = $_GET['userid'];
     </div>
 
     <div class="button-container">
-      <button>Follow</button>
-      <button id="editProfile">Edit Profile</button>
-      <button>Logout</button>
+<?php
+if($userid != $pageid){
+	$sql2  = "Select * From Follow WHERE Follower_Id = :userid and Following_Id = :pageid";
+        $stmt2 = $dbh->prepare($sql2);
+        $stmt2->bindParam(':userid',$userid);
+	$stmt2->bindParam(':pageid',$pageid);
+        $stmt2->execute();
+
+	$follow = $stmt2->fetch();
+
+	if($follow == null){
+		echo "<button>Follow</button>";
+	}else {
+		echo "<button>UnFollow</button>";
+	}
+}
+if($userid == $pageid){
+	echo "<button id='editProfile'>Edit Profile</button>";
+	echo "<button>Logout</button>";
+}
+?>
     </div>
 
     <div class="following-followers">
@@ -104,7 +124,7 @@ $userid = $_GET['userid'];
 	$sql  = "Select FileLocation, Post_Id from Post ";
         $sql .= "Where User_Id = :userid";
         $stmt = $dbh->prepare($sql);
-        $stmt->bindParam(':userid',$userid);
+        $stmt->bindParam(':userid',$pageid);
         $stmt->execute();
 
 	foreach($stmt->fetchAll() as $userPost){
