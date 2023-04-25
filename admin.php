@@ -11,16 +11,6 @@
         }
         $dbh = ConnectDB();
 
-	function deleteUser($user_id) {
-		$sql  = "DELETE from User WHERE User_Id = :userid ";
-        	$sql .= "Order by Post_Date desc";
-        	$stmt = $dbh->prepare($sql);
-		$stmt->bindParam(':userid',$user_id);
-        	$stmt->execute();
-		$stmt = null;
-		header("Location:./admin.php");
-	}
-
 ?>
 <div class="grid-container" style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 20px;">
 <div class="grid-child">
@@ -36,6 +26,8 @@
                 echo "<h2>User Id: " . $post['User_Id'] . "</h2>\n";
                 echo "<p>Post Caption: " . $post['Caption'] . "</p>\n";
                 echo "<p>Post Date: " . $post['Post_Date'] . "</p>\n";
+                echo "<form method='post' action='./delete_post.php'>";
+                echo "<button name='postData' value='" . $post['Post_Id'] . "'>Delete Post?</button></form>";
                 echo "</div>\n";
         }
 
@@ -55,7 +47,8 @@
                 echo "<h2>Username: " . $user['Username'] . "</h2>\n";
                 echo "<p>Email: " . $user['Email'] . "</p>\n";
                 echo "<p>Is Admin?: " . $user['IsAdmin'] . "</p>\n";
-echo '<button onclick="confirmDelete(' . $user['User_Id'] . ')">Delete User?</button>';
+		echo "<form method='post' action='./delete_user.php'>";
+		echo "<button name='userData' value='" . $user['User_Id'] . "'>Delete User?</button></form>";
                 echo "</div>\n";
         }
 
@@ -64,12 +57,4 @@ echo '<button onclick="confirmDelete(' . $user['User_Id'] . ')">Delete User?</bu
 </div>
 
 </div>
-
-<script>
-function confirmDelete(user_id) {
-  if (confirm("Are you sure you want to delete this user?")) {
-    <?php deleteUser(' . $user_id . '); ?>
-  }
-}
-</script>
 
