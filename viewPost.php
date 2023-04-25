@@ -51,7 +51,7 @@ $_SESSION['currentPost'] = $postid;
 
           <img src="img/explore.PNG" class="icon" alt="" />
           <img src="img/like.PNG" class="icon" alt="" />
-          <div class="icon user-profile"></div>
+          <img src="<?php echo $result['Profile_Pic_Location']; ?>" class="icon user-profile"  alt=""></img>
 
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
