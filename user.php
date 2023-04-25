@@ -98,6 +98,7 @@ $userid = $_SESSION['userid'];
     </div>
 
     <div class="container">
+	<div class="row">
 <?php
 	$stmt = null;
 	$sql  = "Select FileLocation, Post_Id from Post ";
@@ -118,7 +119,7 @@ $userid = $_SESSION['userid'];
       }
       $stmt = null;
       ?>
-
+	</div>
     </div>
 
     <!--Begin New Post Modal code-->
