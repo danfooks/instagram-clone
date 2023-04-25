@@ -1,0 +1,123 @@
+body {
+    padding: 0 10vw 100px;
+}
+
+.user-info {
+    margin-top: 100px;
+    width: 100%;
+    align-items: center;
+    gap: 50px;
+}
+
+.user-dp {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.user-info .username {
+    width: auto;
+    margin: 0px 50px 10px 0px; /*  top right bottom left */
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(134,134,134);
+}
+
+.website-link {
+    font-size: .9rem;
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #64b1f8; 
+    font-weight: 500px;
+}
+
+.following-followers {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .following-followers ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .following-followers li {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .following-followers a {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  .following-followers span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px;
+  }
+  
+  .col-4 {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    padding: 10px;
+  }
+  
+  .col-4 img {
+    width: 100%;
+    height: auto;
+  }
+
+  .button-container {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    height: 100px;
+    margin-bottom: -20px;
+    margin-left: 195px;
+  }
+
+  button {
+    border: none;
+    height: 40px;
+    width: 100px;
+    background: #043fff;
+    padding: 5px 0;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    color: #fff;
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+button:active {
+    background: #2c58fe;
+    transform: scaleX(0.995);
+}
