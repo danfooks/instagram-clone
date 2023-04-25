@@ -2,11 +2,11 @@
         session_start();
 
        if ( ! isset($_SESSION['userid']) || $_SESSION['verified'] != 1 ) {
-                header("Location:./login.php");
+                header("Location:../login.php");
                 exit();
        }
 
-        if (!include('connect.php')) {
+        if (!include('../connect.php')) {
                 die('error finding connect file');
         }
         $dbh = ConnectDB();
@@ -15,7 +15,7 @@
 $userid = $_SESSION['userid'];
 $pageid = $_GET['userid'];
 
-//BEGIN POST INFO
+//BEGIN USER INFO
 
         $sql  = "Select *, ";
 	$sql .= "(SELECT count(Follow_Id) FROM Follow WHERE Follower_Id = User_Id) as 'numFollowing', ";
@@ -37,22 +37,22 @@ $pageid = $_GET['userid'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instagram</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png" />
-    <link rel="stylesheet" href="css/feed.css" />
-    <link rel="stylesheet" href="css/post.css" />
-    <link rel="stylesheet" href="css/user.css" />
+    <link rel="stylesheet" href="../css/feed.css" />
+    <link rel="stylesheet" href="../css/post.css" />
+    <link rel="stylesheet" href="../css/user.css" />
   </head>
   <body>
     <nav class="navbar">
       <div class="nav-wrapper">
-        <a href="./feed.php"><img src="img/navLogo.PNG" class="brand-img" alt="" /></a>
+        <a href="../feed.php"><img src="../img/navLogo.PNG" class="brand-img" alt="" /></a>
         <input type="text" class="search-box" placeholder="search" />
         <div class="nav-items">
-          <img src="img/home.PNG" class="icon" alt="" />
-          <img src="img/messenger.PNG" class="icon" alt="" />
-          <img src="img/add.PNG" class="icon" id="newPost" alt="" />
+          <img src="../img/home.PNG" class="icon" alt="" />
+          <img src="../img/messenger.PNG" class="icon" alt="" />
+          <img src="../img/add.PNG" class="icon" id="newPost" alt="" />
 
-          <img src="img/explore.PNG" class="icon" alt="" />
-          <img src="img/like.PNG" class="icon" alt="" />
+          <img src="../img/explore.PNG" class="icon" alt="" />
+          <img src="../img/like.PNG" class="icon" alt="" />
           <div class="icon user-profile"></div>
 
           <div class="dropdown">
@@ -66,7 +66,7 @@ $pageid = $_GET['userid'];
     </nav>
 
     <div class="user-info">
-      <img src="<?php echo $result['Profile_Pic_Location']; ?>" class="user-dp" alt="" />
+      <img src="../<?php echo $result['Profile_Pic_Location']; ?>" class="user-dp" alt="" />
       <div class="info-container">
         <h1 class="name"><?php echo $result['Full_Name']; ?></h1>
         <p class="username">@<?php echo $result['Username']; ?></p>
@@ -97,7 +97,7 @@ if($userid == $pageid){
 	echo "<button id='editProfile' type='submit'>Edit Profile</button>";
 	echo "<form action=''><button type='submit'>Logout</button></form>";
 	if($result['IsAdmin'] == 1){
-		echo "<form action='admin/admin.php'><button type='submit'>Admin Panel</button></form>";
+		echo "<form action='../admin/admin.php'><button type='submit'>Admin Panel</button></form>";
 	}
 }
 ?>
@@ -134,7 +134,7 @@ if($userid == $pageid){
 ?>
   <div class="col-4">
 		<a href="viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
-		<img src="<?php echo $userPost['FileLocation']; ?>" />
+		<img src="../<?php echo $userPost['FileLocation']; ?>" />
 		</a>
 	</div>
 
