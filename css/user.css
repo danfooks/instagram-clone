@@ -16,9 +16,9 @@ body {
 }
 
 /* this is to account for not having a scrollbar */
- .navbar {
-    margin-left: 7.5px;
- }
+.navbar {
+   margin-left: 0px;
+}
 
 .user-info .username {
     width: auto;
