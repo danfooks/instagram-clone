@@ -88,9 +88,13 @@ if($userid != $pageid){
 	$follow = $stmt2->fetch();
 
 	if($follow == null){
-		echo "<button>Follow</button>";
+		echo "<form method='post' action='follow.php'>";
+		echo "<input type='hidden' name='userData' value='" . $pageid . "'>";
+		echo "<button type='submit'>Follow</button></form>";
 	}else {
-		echo "<button>UnFollow</button>";
+		echo "<form method='post' action='unfollow.php'>";
+                echo "<input type='hidden' name='userData' value='" . $pageid . "'>";
+                echo "<button type='submit'>UnFollow</button></form>";
 	}
 }
 if($userid == $pageid){
