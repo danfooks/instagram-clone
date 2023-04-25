@@ -12,7 +12,7 @@
         $dbh = ConnectDB();
 
 
-$userid = $_SESSION['userid'];
+$userid = $_GET['userid'];
 //BEGIN POST INFO
 
         $sql  = "Select *, ";
