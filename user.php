@@ -25,7 +25,7 @@
 
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="./account.php">Account</a>
+              <a class="dropdown-item" href="./user.php">Profile</a>
               <a class="dropdown-item" onclick="logout()">Log Out</a>
             </div>
           </div>
@@ -39,10 +39,7 @@
         <h1 class="name">Dan Fooks</h1>
         <p class="username">@realdanfooks</p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
-          quisquam at id, inventore atque magnam itaque qui, veniam ab vel
-          fugiat repudiandae suscipit, quae accusamus molestiae blanditiis non
-          earum. Eligendi!
+          Lorem ipsum
         </p>
       </div>
     </div>
@@ -75,13 +72,9 @@
         <div class="col-4"><img src="img/seeds/cover 1.png" /></div>
         <div class="col-4"><img src="img/seeds/cover 2.png" /></div>
         <div class="col-4"><img src="img/seeds/cover 3.png" /></div>
-      </div>
-      <div class="row">
         <div class="col-4"><img src="img/seeds/cover 4.png" /></div>
         <div class="col-4"><img src="img/seeds/cover 5.png" /></div>
         <div class="col-4"><img src="img/seeds/cover 6.png" /></div>
-      </div>
-      <div class="row">
         <div class="col-4"><img src="img/seeds/cover 7.png" /></div>
         <div class="col-4"><img src="img/seeds/cover 8.png" /></div>
         <div class="col-4"><img src="img/seeds/cover 9.png" /></div>
