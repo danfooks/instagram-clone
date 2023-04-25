@@ -41,7 +41,7 @@ $_SESSION['currentPost'] = $postid;
   <body>
     <nav class="navbar">
       <div class="nav-wrapper">
-        <img src="img/navLogo.PNG" class="brand-img" alt=""/>
+        <a href="./feed.php"><img src="img/navLogo.PNG" class="brand-img" alt="" /></a>
         <input type="text" class="search-box" placeholder="search" />
         <div class="nav-items">
 
