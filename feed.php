@@ -52,7 +52,7 @@ $userid = $_SESSION['userid'];
 
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="./account.php">Account</a>
+              <a class="dropdown-item" href="./user.php">Account</a>
               <a class="dropdown-item" onclick="logout()">Log Out</a>
             </div>
           </div>
