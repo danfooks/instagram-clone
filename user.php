@@ -51,7 +51,9 @@ $userid = $_SESSION['userid'];
 
           <img src="img/explore.PNG" class="icon" alt="" />
           <img src="img/like.PNG" class="icon" alt="" />
-          <div class="icon user-profile"></div>
+          <div class="icon user-profile">
+            <img src="<?php echo $result['Profile_Pic_Location']; ?>" class="user-dp" alt="" />
+          </div>
 
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
