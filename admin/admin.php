@@ -6,7 +6,7 @@
                 exit();
        }
 
-        if (!include('connect.php')) {
+        if (!include('../connect.php')) {
                 die('error finding connect file');
         }
         $dbh = ConnectDB();

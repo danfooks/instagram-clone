@@ -94,8 +94,11 @@ if($userid != $pageid){
 	}
 }
 if($userid == $pageid){
-	echo "<button id='editProfile'>Edit Profile</button>";
-	echo "<button>Logout</button>";
+	echo "<button id='editProfile' type='submit'>Edit Profile</button>";
+	echo "<form action=''><button type='submit'>Logout</button></form>";
+	if($result['IsAdmin'] == 1){
+		echo "<form action='admin/admin.php'><button type='submit'>Admin Panel</button></form>";
+	}
 }
 ?>
     </div>
