@@ -27,6 +27,8 @@ $_SESSION['currentPost'] = $postid;
         $stmt->execute();
 
         $result = $stmt->fetch();
+
+	$postUser = $result['User_Id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,7 +121,7 @@ $stmt = null;
 
 <?php
 
-        $sql2  = "Select u.Profile_Pic_Location, u.Username, c.Comment_Text, c.Comment_Date from Comment c ";
+        $sql2  = "Select u.Profile_Pic_Location, u.Username, u.User_Id, c.Comment_Text, c.Comment_Date, c.Comment_Id from Comment c ";
         $sql2 .= "join User u using (User_Id)  where Post_Id = :postid ";
         $sql2 .= "Order by Comment_Date Desc";
         $stmt = $dbh->prepare($sql2);
@@ -139,7 +141,15 @@ $stmt = null;
                         <p class="username"><?php echo $comment['Username']; ?></p>
                         <p class="comment"><?php echo $comment['Comment_Text']; ?></p> 
 		     </div>
-		     <img class="trash-can" src="./img/trash_can.PNG" />
+<?php
+	if($userid == $postUser || $userid == $comment['User_Id']){
+		echo "<form method='post' action='deleteComment.php'>";
+echo "<input type='hidden' name='postid' value='" . $postid . "'>";
+echo "<input type='hidden' name='commentid' value='" . $comment['Comment_Id'] . "'>";
+		echo "<button style='display: none;' type='submit'>Delete</button>";
+		echo "<img class='trash-can' src='./img/trash_can.PNG' onclick='this.previousSibling.click();'/></form>";
+	}
+?>
                     </div>
                   </div>
 <?php

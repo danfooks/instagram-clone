@@ -13,12 +13,14 @@
 
         $userid = $_SESSION['userid'];
         $commentid = $_POST['commentid'];
+	$postid = $_POST['postid'];
+
 
                 $sql  = "Delete from Comment where Comment_Id = :commentid";
                 $stmt = $dbh->prepare($sql);
-                $stmt->bindParam(':userid',$userid);
                 $stmt->bindParam(':commentid',$commentid);
                 $stmt->execute();
                 $stmt = null;
-                header("Location:./user.php?userid=".$followingid);
+                header("Location:./viewPost.php?Post_Id=".$postid);
+
 ?>
