@@ -13,13 +13,15 @@
 
 
 $userid = $_SESSION['userid'];
-
-        $sql  = "Select Profile_Pic_Location from User WHERE User_Id = :userid";
+$search = $_POST['search'];
+/*
+        $sql  = "Select User_Id, Profile_Pic_Location, Full_Name, Username from User";
+	$sql .= "where Username like '%:search%'";
+	$sql .= "Order by Username like '%:search%' desc;";
         $stmt = $dbh->prepare($sql);
-        $stmt->bindParam(':userid',$userid);
+        $stmt->bindParam(':search',$search);
         $stmt->execute();
-
-	$result = $stmt->fetch();
+*/
 ?>
 
 <!DOCTYPE html>
@@ -62,38 +64,23 @@ $userid = $_SESSION['userid'];
       <div class="wrapper">
         <div class="status-wrapper">
             <div class="right-col">
+<?php
+	foreach($stmt->fetchAll() as $user){
+
+?>
                 <div class="profile-card">
                   <div class="profile-pic">
-                    <img src="img/seeds/dan.png" alt="">
+                    <img src="<?php echo $user['Profile_Pic_Location']; ?>" alt="">
                   </div>
                   <div>
-                    <p class="username">realdanfooks</p>
-                    <p class="sub-text">Current user</p>
+                    <p class="username"><?php echo $user['Username']; ?></p>
+                    <p class="sub-text"><?php echo $user['Full_Name']; ?></p>
                   </div>
-                  <button class="action-btn" onclick="logout()">View Profile</button>
+		<form action="./user/user.php?userid=<?php echo $user['User_Id']; ?>">
+		<button type='submit' class='action-btn'>View Profile</button>
+		</form>
                 </div> 
 
-                <div class="profile-card">
-                    <div class="profile-pic">
-                      <img src="img/seeds/dan.png" alt="">
-                    </div>
-                    <div>
-                      <p class="username">anotherusernametotest</p>
-                      <p class="sub-text">Current user</p>
-                    </div>
-                    <button class="action-btn" onclick="logout()">View Profile</button>
-                  </div>
-
-                  <div class="profile-card">
-                    <div class="profile-pic">
-                      <img src="img/seeds/dan.png" alt="">
-                    </div>
-                    <div>
-                      <p class="username">realdanfooks</p>
-                      <p class="sub-text">Current user</p>
-                    </div>
-                    <button class="action-btn" onclick="logout()">View Profile</button>
-                  </div>
         </div>  
       </div>
     </section>
