@@ -64,6 +64,94 @@ $pageid = $_GET['userid'];
       </div>
     </nav>
 
+    <!--New Post Modal code-->
+    <div id="newPostModal" class="new-post-modal">
+      <div class="new-post-modal-content">
+        <span class="close">&times;</span>
+        <h3>Create a New Post</h3>
+        <form enctype="multipart/form-data" method="post" action="post.php">
+          <div class="center">
+            <div class="form-input">
+              <div class="preview">
+                <img id="file-ip-1-preview"/>
+              </div>
+              <label for="file-ip-1" class="upload-image-label-button"
+                >Upload Image</label
+              >
+              <input
+                type="file"
+                id="file-ip-1"
+                name="file-ip-1"
+                onchange="showNewPostPreview(event);"
+              />
+            </div>
+          </div>
+
+          <label for="location" class="input-label">Location</label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="Add location"
+          />
+
+          <label for="caption" class="input-label">Caption</label>
+          <textarea
+            id="caption"
+            name="caption"
+            rows="3"
+            placeholder="Write a caption..."
+            class="input-textarea"
+          ></textarea>
+          <input type="submit" value="Share" />
+        </form>
+      </div>
+    </div>
+
+    <!--Edit Profile Modal-->
+    <div id="editProfileModal" class="new-post-modal">
+      <!-- Modal content -->
+      <div class="new-post-modal-content">
+        <span class="close">&times;</span>
+        <h3>Edit Profile</h3>
+        <form enctype="multipart/form-data" method="post" action="./updateProfile.php">
+          <div class="center">
+            <div class="form-input">
+              <div class="preview">
+                <img id="file-ip-2-preview" />
+              </div>
+              <label for="file-ip-2" class="upload-image-label-button"
+                >Upload Avatar</label
+              >
+              <input
+                type="file"
+                id="file-ip-2"
+                name="file-ip-2"
+                onchange="showAvatarPreview(event);"
+              />
+            </div>
+          </div>
+
+          <label for="name" class="input-label">Name</label>
+          <input type="text" id="name" name="name" value="<?php echo $result['Full_Name']; ?>" />
+          <label for="username" class="input-label">Username</label>
+          <input type="text" id="username" name="username" value="<?php echo $result['Username']; ?>" />
+          <label for="bio" class="input-label">Profile Bio</label>
+          <textarea
+            id="bio"
+            name="bio"
+            rows="3"
+            class="input-textarea"
+          ><?php echo $result['User_Bio']; ?></textarea>
+          <input type="submit" value="Update Profile" />
+        </form>
+	<div class="management-buttons">
+            <button class="secondary-button">Reset Password</button>
+            <button class="secondary-button delete">Delete Account</button>
+          </div>
+      </div>
+    </div>
+
     <div class="user-info">
       <img src="../<?php echo $result['Profile_Pic_Location']; ?>" class="user-dp" alt="" />
       <div class="info-container">
@@ -146,99 +234,6 @@ if($userid == $pageid){
       $stmt = null;
       ?>
 	</div>
-    </div>
-
-    <!--Begin New Post Modal code-->
-    <!-- The Modal -->
-    <div id="newPostModal" class="new-post-modal">
-      <!-- Modal content -->
-      <div class="new-post-modal-content">
-        <span class="close">&times;</span>
-        <h3>Create a New Post</h3>
-        <form enctype="multipart/form-data" method="post" action="post.php">
-          <div class="center">
-            <div class="form-input">
-              <div class="preview">
-                <img id="file-ip-1-preview"/>
-              </div>
-              <label for="file-ip-1" class="upload-image-label-button"
-                >Upload Image</label
-              >
-              <input
-                type="file"
-                id="file-ip-1"
-                name="file-ip-1"
-                onchange="showNewPostPreview(event);"
-              />
-            </div>
-          </div>
-
-          <label for="location" class="input-label">Location</label>
-          <input
-            type="text"
-            id="location"
-            name="location"
-            placeholder="Add location"
-          />
-
-          <label for="caption" class="input-label">Caption</label>
-          <textarea
-            id="caption"
-            name="caption"
-            rows="3"
-            placeholder="Write a caption..."
-            class="input-textarea"
-          ></textarea>
-          <input type="submit" value="Share" />
-        </form>
-      </div>
-    </div>
-
-    <!--Edit Profile Modal-->
-    <div id="editProfileModal" class="new-post-modal">
-      <!-- Modal content -->
-      <div class="new-post-modal-content">
-        <span class="close">&times;</span>
-        <h3>Edit Profile</h3>
-        <form enctype="multipart/form-data" method="post" action="post.php">
-          <div class="center">
-            <div class="form-input">
-              <div class="preview">
-                <img id="file-ip-2-preview" />
-              </div>
-              <label for="file-ip-2" class="upload-image-label-button"
-                >Upload Avatar</label
-              >
-              <input
-                type="file"
-                id="file-ip-2"
-                name="file-ip-2"
-                onchange="showAvatarPreview(event);"
-              />
-            </div>
-          </div>
-
-          <label for="name" class="input-label">Name</label>
-          <input type="text" id="name" name="name" placeholder="Edit name" />
-
-          <label for="bio" class="input-label">Profile Bio</label>
-          <textarea
-            id="bio"
-            name="bio"
-            rows="3"
-            placeholder="Write a bio..."
-            class="input-textarea"
-          ></textarea>
-
-          <label for="newPassword" class="input-label">New Password</label>
-          <input type="password" id="newPassword" name="newPassword" placeholder="New password" />
-
-          <label for="confirmPassword" class="input-label">Confirm Password</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" />
-
-          <input type="submit" value="Update Profile" />
-        </form>
-      </div>
     </div>
 
     <script>
