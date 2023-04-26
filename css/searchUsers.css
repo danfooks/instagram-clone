@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.profile-card .profile-pic {
+    flex: 0 0 auto;
+    padding: 0;
+    background: none;
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.comment-btn,
+.action-btn {
+    width: 70px;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    margin-left: 20px;
+    text-transform: capitalize;
+    font-size: 16px;
+    color: rgb(0,162,255);
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.action-btn {
+    opacity: 1;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.status-wrapper {
+    width: 600px;
+    height: auto;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    padding: 10px;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    overflow-x: auto;
+}
