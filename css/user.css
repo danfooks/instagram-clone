@@ -103,7 +103,23 @@ body {
     text-align: left;
     height: 100px;
     margin-bottom: -20px;
-    margin-left: 195px;
+  }
+
+  .button-container form {
+	width: 100px;
+	margin-left: -140px;
+  }
+
+  .logout-button {
+	margin-left: 140px;
+  }
+
+  .admin-button {
+    margin-left: 290px;
+  }
+
+  .follow-button {
+     margin-left: 140px;
   }
 
   button {
