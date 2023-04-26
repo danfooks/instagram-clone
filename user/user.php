@@ -61,7 +61,7 @@ $pageid = $_GET['userid'];
             </div>
           </div>
         </div>
-      </div>
+     </div>
     </nav>
 
     <!--New Post Modal code-->
@@ -146,8 +146,13 @@ $pageid = $_GET['userid'];
           <input type="submit" value="Update Profile" />
         </form>
 	<div class="management-buttons">
-            <button class="secondary-button">Reset Password</button>
-            <button class="secondary-button delete">Delete Account</button>
+            <form action = "../resetPassword.php">
+	    <button type="submit" class="secondary-button">Reset Password</button>
+	    </form>
+	    <form action = "deleteUser.php">
+            <button type="submit" class="secondary-button delete"
+		onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
+	    </form>
           </div>
       </div>
     </div>
