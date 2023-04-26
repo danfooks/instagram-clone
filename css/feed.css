@@ -45,6 +45,20 @@ body {
     margin-left: 3px;
 } 
 
+.search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: -90px;
+}
+
+.search-btn {
+    margin-left: 460px;
+    margin-bottom: 20px;
+    height: 34px;
+    width: 70px;
+}
+
 .search-box {
     position: absolute;
     left: 50%;
