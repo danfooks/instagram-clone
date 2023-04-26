@@ -44,9 +44,6 @@ try {
 
         $result = $stmt->fetch();
         $userid = $result['User_Id'];
-
-	print($userid);
-
         $stmt = null;
 } catch (Exception $e) {
         echo "Error";
