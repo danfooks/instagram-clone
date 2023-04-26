@@ -216,7 +216,7 @@ if($userid == $pageid){
 <?php
 	$stmt = null;
 	$sql  = "Select FileLocation, Post_Id from Post ";
-        $sql .= "Where User_Id = :userid";
+        $sql .= "Where User_Id = :userid Order by Post_Date desc";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':userid',$pageid);
         $stmt->execute();
