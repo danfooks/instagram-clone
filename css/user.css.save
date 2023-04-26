@@ -106,26 +106,22 @@ body {
   }
 
   .button-container form {
-        margin-left: 0px;
-        margin-right: -170px;
+	width: 100px;
+        padding: 0px;
+	margin-left: 0px; /* fix this for edit button*/
+  }
+
+  .logout-button {
+	margin-right: 10px;clear
+
   }
 
   form button {
-    margin-left: 0px;
+    margin-left: 0;
   }
 
-  form {
-    margin-right: 0px;
-  }
-
-  .info-container p {
-     width: 500px;
-     height: 100%;	
-     margin: 0px 0px 0px -145px;
-  }
-
-  .info-container .username {
-     margin-bottom: 40px;
+  .follow-button {
+     margin-left: 140px;
   }
 
   button {
@@ -148,30 +144,4 @@ body {
 button:active {
     background: #2c58fe;
     transform: scaleX(0.995);
-}
-
-.management-buttons {
-    display: flex;
-    align-items: center;
-    text-align: left;
-}
-
-.management-buttons button {
-  width: 500px;
-}
-
-.secondary-button {
-  background: #dadce2;
-  color: black;
-  font-weight: bold;
-  margin-left: 0px;
-  margin-right: 0px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.secondary-button.delete {
-  background: #FF0000;
-  margin-left: 10px;
-  color: white;
 }
