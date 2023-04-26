@@ -10,7 +10,7 @@ export const selectors = {
     createAccountButton: '[data-test=createAccount]',
 };
 
-export function fillRegistraionForm(registrationInfo) {
+export function fillRegistrationForm(registrationInfo) {
     fillTextInput(selectors.email, registrationInfo.email);
     fillTextInput(selectors.fullName, registrationInfo.fullName);
     fillTextInput(selectors.username, registrationInfo.username);
