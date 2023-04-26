@@ -127,3 +127,29 @@ button:active {
     background: #2c58fe;
     transform: scaleX(0.995);
 }
+
+.management-buttons {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.management-buttons button {
+  width: 500px;
+}
+
+.secondary-button {
+  background: #dadce2;
+  color: black;
+  font-weight: bold;
+  margin-left: 0px;
+  margin-right: 0px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.secondary-button.delete {
+  background: #FF0000;
+  margin-left: 10px;
+  color: white;
+}

@@ -220,7 +220,8 @@ if($userid == $pageid){
 
           <label for="name" class="input-label">Name</label>
           <input type="text" id="name" name="name" placeholder="Edit name" />
-
+          <label for="username" class="input-label">Username</label>
+          <input type="text" id="username" name="username" placeholder="Edit username" />
           <label for="bio" class="input-label">Profile Bio</label>
           <textarea
             id="bio"
@@ -229,13 +230,10 @@ if($userid == $pageid){
             placeholder="Write a bio..."
             class="input-textarea"
           ></textarea>
-
-          <label for="newPassword" class="input-label">New Password</label>
-          <input type="password" id="newPassword" name="newPassword" placeholder="New password" />
-
-          <label for="confirmPassword" class="input-label">Confirm Password</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" />
-
+          <div class="management-buttons">
+            <button class="secondary-button">Reset Password</button>
+            <button class="secondary-button delete">Delete Account</button>
+          </div>
           <input type="submit" value="Update Profile" />
         </form>
       </div>
