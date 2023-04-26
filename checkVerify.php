@@ -26,7 +26,24 @@ try {
         echo "Error";
         echo $e->getMessage();
 }
+//relationship with default instagram account
+try {
+        $sql3   = "Insert into Follow ";
+	$sql3  .= "values(default, :userid, 47), ";
+	$sql3  .= "(default, 47, :userid)";
+        $stmt3 = $dbh->prepare($sql3);
+        $stmt3->bindParam(':userid',$userid);
+        $stmt3->execute();
 
+
+        $stmt3 = null;
+
+
+}catch(Exception $e){
+        echo "Error";
+        echo $e->getMessage();
+}
+//change verified status
 try {
         $sql2  = "UPDATE User SET Verified = 1 WHERE User_Id = :user_id";
         $stmt2 = $dbh->prepare($sql2);
