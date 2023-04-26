@@ -148,11 +148,14 @@ foreach($stmt->fetchAll() as $userPost){
               <img src="img/option.PNG" class="options" alt="" />
             </div>
 		<a href="viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
-            		<img src="<?php echo $userPost['FileLocation']; ?>" class="post-image" alt="" />
+            		<img src="./img/seeds/dan.png" class="post-image" alt="" />
+                <div class="post-overlay">
+                  <img src="./img/red-heart.png" class="like-icon" id="heartAnimation" alt="">
+                </div>
 		</a>
             <div class="post-content">
               <div class="reaction-wrapper">
-                <img src="img/like.PNG" class="icon" alt="" />
+                <img src="img/heart-nofill.png" id="heartIcon" class="icon-heart" alt="" />
                 <img src="img/comment.PNG" class="icon" alt="" />
                 <img src="img/send.PNG" class="icon" alt="" />
                 <img src="img/save.PNG" class="icon save" alt="" />
@@ -345,6 +348,29 @@ $stmt = null;
       dropdownMenu.classList.remove('show');
     }
   });
+
+  // Like icon script
+  let heartIcon = document.getElementById('heartIcon');
+  let heartAnimation = document.getElementById('heartAnimation');
+
+heartIcon.addEventListener('click', () => {
+    let src = heartIcon.src.split('-')[0];
+    if(heartIcon.src.includes('nofill')) {
+        heartIcon.src = 'img/red-heart.png';
+    } else {
+        heartIcon.src = 'img/heart-nofill.png';
+    }
+});
+
+heartIcon.addEventListener('click', () => {
+  if(!heartIcon.src.includes('nofill')) {
+    heartAnimation.classList.add('show');
+  }
+
+  setTimeout(() => {
+    heartAnimation.classList.remove('show');
+  }, 3000);
+});
       </script>
       <!--End New Post Modal code-->
   </body>
