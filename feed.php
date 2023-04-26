@@ -32,12 +32,12 @@ $userid = $_SESSION['userid'];
     <link rel="stylesheet" href="css/feed.css" />
   </head>
   <body>
-    <nav class="navbar">
+    <nav data-test="navigationBar" class="navbar">
       <div class="nav-wrapper">
         <a href="./feed.php"><img src="img/navLogo.PNG" class="brand-img" alt="" /></a>
         <form class="search-form" method="post" action="./searchUsers.php">
           <input type="text" class="search-box" name="search" placeholder="Find a user" />
-          <button class="search-btn" type="submit">Search</button>
+          <button data-test="searchButton" class="search-btn" type="submit">Search</button>
         </form>
         <div class="nav-items">
 

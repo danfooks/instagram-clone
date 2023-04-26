@@ -1,0 +1,1 @@
+export const NavigationTimeout = { timeout: 10000 };

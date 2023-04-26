@@ -35,7 +35,7 @@
               </a>
             </p>
           </div>
-          <button>Create Account</button>
+          <button data-test="createAccount">Create Account</button>
           <div class="signup">
             <p>
               Have an account?<a href="./login.php" data-test="logIn"
