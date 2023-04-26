@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instagram - Login</title>
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page">
+        <img class="logo" src="img/instagram_cursive.png"/>
+
+	<div class="error">
 <?php
 // checkemail.php
 //
@@ -31,9 +44,6 @@ try {
 
         $result = $stmt->fetch();
         $userid = $result['User_Id'];
-
-	print($userid);
-
         $stmt = null;
 } catch (Exception $e) {
         echo "Error";
@@ -50,6 +60,8 @@ try {
         $stmt->bindParam(':confirmcode', $confirmcode);
         $stmt->bindParam(':userid', $userid);
         $stmt->execute();
+
+        echo "A link to reset your password has been sent. Please check your email!";
 
 	// put together the email:
         $to      = $_POST['email'];
@@ -73,8 +85,8 @@ try {
 }
 }
 ?>
-
-<p>
-        Down here you'd probably put a message like "I have sent email to
-        the address you gave" or something.
-</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
