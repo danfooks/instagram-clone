@@ -177,18 +177,18 @@ if($userid != $pageid){
 	if($follow == null){
 		echo "<form method='post' action='follow.php'>";
 		echo "<input type='hidden' name='userData' value='" . $pageid . "'>";
-		echo "<button type='submit'>Follow</button></form>";
+		echo "<button class='follow-button' type='submit'>Follow</button></form>";
 	}else {
 		echo "<form method='post' action='unfollow.php'>";
                 echo "<input type='hidden' name='userData' value='" . $pageid . "'>";
-                echo "<button type='submit'>Unfollow</button></form>";
+                echo "<button class='follow-button' type='submit'>Unfollow</button></form>";
 	}
 }
 if($userid == $pageid){
 	echo "<button id='editProfile' type='submit'>Edit Profile</button>";
-	echo "<form action=''><button type='submit' onclick='logout()'>Logout</button></form>";
+	echo "<form action=''><button class='logout-button' type='submit' onclick='logout()'>Logout</button></form>";
 	if($result['IsAdmin'] == 1){
-		echo "<form action='../admin/admin.php'><button type='submit'>Admin Panel</button></form>";
+		echo "<form action='../admin/admin.php'><button class='admin-button' type='submit'>Admin Panel</button></form>";
 	}
 }
 ?>
