@@ -64,94 +64,8 @@ $pageid = $_GET['userid'];
       </div>
     </nav>
 
-    <div class="user-info">
-      <img src="../<?php echo $result['Profile_Pic_Location']; ?>" class="user-dp" alt="" />
-      <div class="info-container">
-        <h1 class="name"><?php echo $result['Full_Name']; ?></h1>
-        <p class="username">@<?php echo $result['Username']; ?></p>
-        <p>
-          <?php echo $result['User_Bio']; ?>
-        </p>
-      </div>
-    </div>
-
-    <div class="button-container">
-<?php
-if($userid != $pageid){
-	$sql2  = "Select * From Follow WHERE Follower_Id = :userid and Following_Id = :pageid";
-        $stmt2 = $dbh->prepare($sql2);
-        $stmt2->bindParam(':userid',$userid);
-	$stmt2->bindParam(':pageid',$pageid);
-        $stmt2->execute();
-
-	$follow = $stmt2->fetch();
-
-	if($follow == null){
-		echo "<form method='post' action='follow.php'>";
-		echo "<input type='hidden' name='userData' value='" . $pageid . "'>";
-		echo "<button type='submit'>Follow</button></form>";
-	}else {
-		echo "<form method='post' action='unfollow.php'>";
-                echo "<input type='hidden' name='userData' value='" . $pageid . "'>";
-                echo "<button type='submit'>Unfollow</button></form>";
-	}
-}
-if($userid == $pageid){
-	echo "<button id='editProfile' type='submit'>Edit Profile</button>";
-	echo "<form action=''><button type='submit' onclick='logout()'>Logout</button></form>";
-	if($result['IsAdmin'] == 1){
-		echo "<form action='../admin/admin.php'><button type='submit'>Admin Panel</button></form>";
-	}
-}
-?>
-    </div>
-
-    <div class="following-followers">
-      <ul>
-        <li>
-          <a href="#">Posts</a>
-          <span><?php echo $result['numPosts']; ?></span>
-        </li>
-        <li>
-          <a href="#">Following</a>
-          <span><?php echo $result['numFollowing']; ?></span>
-        </li>
-        <li>
-          <a href="#">Followers</a>
-          <span><?php echo $result['numFollowers']; ?></span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="container">
-	<div class="row">
-<?php
-	$stmt = null;
-	$sql  = "Select FileLocation, Post_Id from Post ";
-        $sql .= "Where User_Id = :userid";
-        $stmt = $dbh->prepare($sql);
-        $stmt->bindParam(':userid',$pageid);
-        $stmt->execute();
-
-	foreach($stmt->fetchAll() as $userPost){
-?>
-  <div class="col-4">
-		<a href="../viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
-		<img src="../<?php echo $userPost['FileLocation']; ?>" />
-		</a>
-	</div>
-
-      <?php
-      }
-      $stmt = null;
-      ?>
-	</div>
-    </div>
-
-    <!--Begin New Post Modal code-->
-    <!-- The Modal -->
+    <!--New Post Modal code-->
     <div id="newPostModal" class="new-post-modal">
-      <!-- Modal content -->
       <div class="new-post-modal-content">
         <span class="close">&times;</span>
         <h3>Create a New Post</h3>
@@ -237,6 +151,90 @@ if($userid == $pageid){
           <input type="submit" value="Update Profile" />
         </form>
       </div>
+    </div>
+
+    <div class="user-info">
+      <img src="../<?php echo $result['Profile_Pic_Location']; ?>" class="user-dp" alt="" />
+      <div class="info-container">
+        <h1 class="name"><?php echo $result['Full_Name']; ?></h1>
+        <p class="username">@<?php echo $result['Username']; ?></p>
+        <p>
+          <?php echo $result['User_Bio']; ?>
+        </p>
+      </div>
+    </div>
+
+    <div class="button-container">
+<?php
+if($userid != $pageid){
+	$sql2  = "Select * From Follow WHERE Follower_Id = :userid and Following_Id = :pageid";
+        $stmt2 = $dbh->prepare($sql2);
+        $stmt2->bindParam(':userid',$userid);
+	$stmt2->bindParam(':pageid',$pageid);
+        $stmt2->execute();
+
+	$follow = $stmt2->fetch();
+
+	if($follow == null){
+		echo "<form method='post' action='follow.php'>";
+		echo "<input type='hidden' name='userData' value='" . $pageid . "'>";
+		echo "<button type='submit'>Follow</button></form>";
+	}else {
+		echo "<form method='post' action='unfollow.php'>";
+                echo "<input type='hidden' name='userData' value='" . $pageid . "'>";
+                echo "<button type='submit'>Unfollow</button></form>";
+	}
+}
+if($userid == $pageid){
+	echo "<button id='editProfile' type='submit'>Edit Profile</button>";
+	echo "<form action=''><button type='submit' onclick='logout()'>Logout</button></form>";
+	if($result['IsAdmin'] == 1){
+		echo "<form action='../admin/admin.php'><button type='submit'>Admin Panel</button></form>";
+	}
+}
+?>
+    </div>
+
+    <div class="following-followers">
+      <ul>
+        <li>
+          <a href="#">Posts</a>
+          <span><?php echo $result['numPosts']; ?></span>
+        </li>
+        <li>
+          <a href="#">Following</a>
+          <span><?php echo $result['numFollowing']; ?></span>
+        </li>
+        <li>
+          <a href="#">Followers</a>
+          <span><?php echo $result['numFollowers']; ?></span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+	<div class="row">
+<?php
+	$stmt = null;
+	$sql  = "Select FileLocation, Post_Id from Post ";
+        $sql .= "Where User_Id = :userid";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(':userid',$pageid);
+        $stmt->execute();
+
+	foreach($stmt->fetchAll() as $userPost){
+?>
+  <div class="col-4">
+		<a href="../viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
+		<img src="../<?php echo $userPost['FileLocation']; ?>" />
+		</a>
+	</div>
+
+      <?php
+      }
+      $stmt = null;
+      ?>
+	</div>
     </div>
 
     <script>
