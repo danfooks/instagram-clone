@@ -43,8 +43,8 @@ $_SESSION['currentPost'] = $postid;
       <div class="nav-wrapper">
         <a href="./feed.php"><img src="img/navLogo.PNG" class="brand-img" alt="" /></a>
         <form class="search-form" method="post" action="./searchUsers.php">
-          <input type="text" class="search-box" placeholder="Find a user" />
-          <button class="search-btn">Search</button>
+          <input type="text" class="search-box" name="search" placeholder="Find a user" />
+          <button class="search-btn" type="submit">Search</button>
         </form>
         <div class="nav-items">
 

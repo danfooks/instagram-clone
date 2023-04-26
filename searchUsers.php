@@ -14,14 +14,15 @@
 
 $userid = $_SESSION['userid'];
 $search = $_POST['search'];
-/*
-        $sql  = "Select User_Id, Profile_Pic_Location, Full_Name, Username from User";
-	$sql .= "where Username like '%:search%'";
-	$sql .= "Order by Username like '%:search%' desc;";
+$searchParam = '%' . $search . '%';
+
+        $sql  = "Select User_Id, Profile_Pic_Location, Full_Name, Username from User ";
+	$sql .= "where Username like :search ";
+	$sql .= "Order by Username like :search desc";
         $stmt = $dbh->prepare($sql);
-        $stmt->bindParam(':search',$search);
+        $stmt->bindParam(':search',$searchParam);
         $stmt->execute();
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -35,31 +36,28 @@ $search = $_POST['search'];
     <link rel="stylesheet" href="css/searchUsers.css" />
   </head>
   <body>
-    <nav class="navbar">
+        <nav class="navbar">
       <div class="nav-wrapper">
         <a href="./feed.php"><img src="img/navLogo.PNG" class="brand-img" alt="" /></a>
-        <input type="text" class="search-box" placeholder="search" />
+        <form class="search-form" method="post" action="./searchUsers.php">
+          <input type="text" class="search-box" name="search" placeholder="Find a user" />
+          <button class="search-btn" type="submit">Search</button>
+        </form>
         <div class="nav-items">
 
           <img src="img/home.PNG" class="icon" alt=""/>
-          <img src="img/messenger.PNG" class="icon" alt="" />
           <img src="img/add.PNG" class="icon" id="newPost" alt="" />
-
-          <img src="img/explore.PNG" class="icon" alt="" />
-          <img src="img/like.PNG" class="icon" alt="" />
-          <img src="<?php echo $result['Profile_Pic_Location']; ?>" class="icon user-profile"  alt=""></img>
+          <img src="<?php echo $result['Profile_Pic_Location']; ?>" class="icon user-profil>
 
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="./user/user.php?userid=<?php echo $userid; ?>">Profile</a>
-              <a class="dropdown-item" onclick="logout()">Log Out</a>
+              <a class="dropdown-item" href="./user/user.php?userid=<?php echo $userid; ?>">              <a class="dropdown-item" onclick="logout()">Log Out</a>
             </div>
           </div>
 
         </div>
       </div>
     </nav>
-
     <section class="main">
       <div class="wrapper">
         <div class="status-wrapper">
@@ -76,11 +74,16 @@ $search = $_POST['search'];
                     <p class="username"><?php echo $user['Username']; ?></p>
                     <p class="sub-text"><?php echo $user['Full_Name']; ?></p>
                   </div>
-		<form action="./user/user.php?userid=<?php echo $user['User_Id']; ?>">
+		<form action="./user/user.php" method="get">
+		<input type="hidden" name="userid" value="<?php echo $user['User_Id']; ?>">
 		<button type='submit' class='action-btn'>View Profile</button>
 		</form>
                 </div> 
 
+<?php
+}
+$stmt = null;
+?>
         </div>  
       </div>
     </section>
