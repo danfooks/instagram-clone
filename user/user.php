@@ -114,7 +114,7 @@ $pageid = $_GET['userid'];
       <div class="new-post-modal-content">
         <span class="close">&times;</span>
         <h3>Edit Profile</h3>
-        <form enctype="multipart/form-data" method="post" action="post.php">
+        <form enctype="multipart/form-data" method="post" action="./updateProfile.php">
           <div class="center">
             <div class="form-input">
               <div class="preview">
@@ -133,23 +133,22 @@ $pageid = $_GET['userid'];
           </div>
 
           <label for="name" class="input-label">Name</label>
-          <input type="text" id="name" name="name" placeholder="Edit name" />
+          <input type="text" id="name" name="name" value="<?php echo $result['Full_Name']; ?>" />
           <label for="username" class="input-label">Username</label>
-          <input type="text" id="username" name="username" placeholder="Edit username" />
+          <input type="text" id="username" name="username" value="<?php echo $result['Username']; ?>" />
           <label for="bio" class="input-label">Profile Bio</label>
           <textarea
             id="bio"
             name="bio"
             rows="3"
-            placeholder="Write a bio..."
             class="input-textarea"
-          ></textarea>
-          <div class="management-buttons">
+          ><?php echo $result['User_Bio']; ?></textarea>
+          <input type="submit" value="Update Profile" />
+        </form>
+	<div class="management-buttons">
             <button class="secondary-button">Reset Password</button>
             <button class="secondary-button delete">Delete Account</button>
           </div>
-          <input type="submit" value="Update Profile" />
-        </form>
       </div>
     </div>
 
