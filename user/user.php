@@ -61,7 +61,7 @@ $pageid = $_GET['userid'];
             </div>
           </div>
         </div>
-      </div>
+     </div>
     </nav>
 
     <!--New Post Modal code-->
@@ -69,7 +69,7 @@ $pageid = $_GET['userid'];
       <div class="new-post-modal-content">
         <span class="close">&times;</span>
         <h3>Create a New Post</h3>
-        <form enctype="multipart/form-data" method="post" action="post.php">
+        <form enctype="multipart/form-data" method="post" action="../post.php">
           <div class="center">
             <div class="form-input">
               <div class="preview">
@@ -146,8 +146,13 @@ $pageid = $_GET['userid'];
           <input type="submit" value="Update Profile" />
         </form>
 	<div class="management-buttons">
-            <button class="secondary-button">Reset Password</button>
-            <button class="secondary-button delete">Delete Account</button>
+            <form action = "../resetPassword.php">
+	    <button type="submit" class="secondary-button">Reset Password</button>
+	    </form>
+	    <form action = "deleteUser.php">
+            <button type="submit" class="secondary-button delete"
+		onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
+	    </form>
           </div>
       </div>
     </div>
@@ -216,7 +221,7 @@ if($userid == $pageid){
 <?php
 	$stmt = null;
 	$sql  = "Select FileLocation, Post_Id from Post ";
-        $sql .= "Where User_Id = :userid";
+        $sql .= "Where User_Id = :userid Order by Post_Date desc";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':userid',$pageid);
         $stmt->execute();
