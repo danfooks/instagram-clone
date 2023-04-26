@@ -69,7 +69,7 @@ $pageid = $_GET['userid'];
       <div class="new-post-modal-content">
         <span class="close">&times;</span>
         <h3>Create a New Post</h3>
-        <form enctype="multipart/form-data" method="post" action="post.php">
+        <form enctype="multipart/form-data" method="post" action="../post.php">
           <div class="center">
             <div class="form-input">
               <div class="preview">
