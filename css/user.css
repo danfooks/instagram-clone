@@ -170,6 +170,18 @@ button:active {
   transition: background-color 0.3s;
 }
 
+.bottom-form {
+  width: 290px;
+}
+
+.bottom-form button {
+   width: 250px;
+}
+
+.secondary-button.first {
+   margin-right: 150px;
+}
+
 .secondary-button.delete {
   background: #FF0000;
   margin-left: 10px;

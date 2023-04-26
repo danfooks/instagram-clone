@@ -146,10 +146,10 @@ $pageid = $_GET['userid'];
           <input type="submit" value="Update Profile" />
         </form>
 	<div class="management-buttons">
-            <form action = "../resetPassword.php">
-	    <button type="submit" class="secondary-button">Reset Password</button>
+            <form class="bottom-form" action = "../resetPassword.php">
+	    <button type="submit" class="secondary-button first">Reset Password</button>
 	    </form>
-	    <form action = "deleteUser.php">
+	    <form class="bottom-form" action = "deleteUser.php">
             <button type="submit" class="secondary-button delete"
 		onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
 	    </form>
