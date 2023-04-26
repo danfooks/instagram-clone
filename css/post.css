@@ -79,7 +79,7 @@
     width: 500px;
     color: rgba(0,0,0,0,5);
     font-size: 12px;
-    margin: 20px 0px 5px 10px; /*  top right bottom left */
+    margin: 20px 30px 5px 10px; /*  top right bottom left */
 }
 
 .feed {
@@ -92,22 +92,14 @@
     margin-top: 20px;
 }
 
-/* .comment-box {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 50%;
-    padding: 10px;
-    height: auto;
-    border: none;
-    border-top: 1px solid #999;
-    background: #fff;
-    z-index: 2;
-} */
+.trash-can {
+    width: 15px;
+    margin-top: 10px;
+    margin-left: -20px;
+}
 
 .comment-box {
     width: 473px;
-    height: 100%;
     outline: none;
     font-size: 14px;
 }
@@ -118,7 +110,8 @@
 }
 
 .comment-wrapper {
-    width: auto;
+    margin-left: -17px;
+    width: 720px;
 }
 
 .post-content {
