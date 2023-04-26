@@ -137,8 +137,9 @@ $stmt = null;
                       </div>
                       <div>
                         <p class="username"><?php echo $comment['Username']; ?></p>
-                        <p class="comment"><?php echo $comment['Comment_Text']; ?></p>
-                      </div>
+                        <p class="comment"><?php echo $comment['Comment_Text']; ?></p> 
+		     </div>
+		     <img class="trash-can" src="./img/trash_can.PNG" />
                     </div>
                   </div>
 <?php
