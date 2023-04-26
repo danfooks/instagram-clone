@@ -53,11 +53,11 @@ $pageid = $_GET['userid'];
 
           <img src="../img/explore.PNG" class="icon" alt="" />
           <img src="../img/like.PNG" class="icon" alt="" />
-          <div class="icon user-profile"></div>
+          <img src="../<?php echo $result['Profile_Pic_Location']; ?>" class="icon user-profile"  alt=""></img>
 
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="./user.php">Profile</a>
+              <a class="dropdown-item" href="./user/user.php?userid=<?php echo $userid; ?>">Profile</a>
               <a class="dropdown-item" onclick="logout()">Log Out</a>
             </div>
           </div>
@@ -94,12 +94,12 @@ if($userid != $pageid){
 	}else {
 		echo "<form method='post' action='unfollow.php'>";
                 echo "<input type='hidden' name='userData' value='" . $pageid . "'>";
-                echo "<button type='submit'>UnFollow</button></form>";
+                echo "<button type='submit'>Unfollow</button></form>";
 	}
 }
 if($userid == $pageid){
 	echo "<button id='editProfile' type='submit'>Edit Profile</button>";
-	echo "<form action=''><button type='submit'>Logout</button></form>";
+	echo "<form action=''><button type='submit' onclick='logout()'>Logout</button></form>";
 	if($result['IsAdmin'] == 1){
 		echo "<form action='../admin/admin.php'><button type='submit'>Admin Panel</button></form>";
 	}
@@ -246,11 +246,11 @@ if($userid == $pageid){
       function logout() {
         // Use AJAX to call a PHP script to destroy the session
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "logout.php", true);
+        xhr.open("GET", "../logout.php", true);
         xhr.send();
 
         // Redirect to the login page or any other page as needed
-        window.location = "login.php";
+        window.location = "../login.php";
       }
 
       // Begin Edit Profile Modal
