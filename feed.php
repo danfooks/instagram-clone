@@ -44,13 +44,11 @@ $userid = $_SESSION['userid'];
 
           <img src="img/explore.PNG" class="icon" alt="" />
           <img src="img/like.PNG" class="icon" alt="" />
-          <div class="icon user-profile">
-		<img src="<?php echo $result['Profile_Pic_Location']; ?>" style="max-width: 100%; pointer-events: none;"/>
-	  </div>
+          <img src="<?php echo $result['Profile_Pic_Location']; ?>" class="icon user-profile"  alt=""></img>
 
           <div class="dropdown">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="./user/user.php?userid=<?php echo $userid; ?>">Account</a>
+              <a class="dropdown-item" href="./user/user.php?userid=<?php echo $userid; ?>">Profile</a>
               <a class="dropdown-item" onclick="logout()">Log Out</a>
             </div>
           </div>
