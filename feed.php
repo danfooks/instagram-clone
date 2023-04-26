@@ -148,7 +148,7 @@ foreach($stmt->fetchAll() as $userPost){
               <img src="img/option.PNG" class="options" alt="" />
             </div>
 		<a href="viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
-            		<img src="./img/seeds/dan.png" class="post-image" alt="" />
+                <img src="<?php echo $userPost['FileLocation']; ?>" class="post-image" alt="" />
                 <div class="post-overlay">
                   <img src="./img/red-heart.png" class="like-icon" id="heartAnimation" alt="">
                 </div>
