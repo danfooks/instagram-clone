@@ -136,7 +136,7 @@ if($userid == $pageid){
 	foreach($stmt->fetchAll() as $userPost){
 ?>
   <div class="col-4">
-		<a href="viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
+		<a href="../viewPost.php?Post_Id=<?php echo $userPost['Post_Id']; ?>">
 		<img src="../<?php echo $userPost['FileLocation']; ?>" />
 		</a>
 	</div>
