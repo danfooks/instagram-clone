@@ -39,5 +39,5 @@ try {
         echo "Error";
         echo $e->getMessage();
 }
-
+header("Location:./feed.php");
 ?>
