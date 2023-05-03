@@ -13,10 +13,16 @@
 
 	$user_id = $_POST['userData'];
 
+
+try {
 		$sql  = "DELETE from User WHERE User_Id = :userid ";
                 $stmt = $dbh->prepare($sql);
                 $stmt->bindParam(':userid',$user_id);
                 $stmt->execute();
                 $stmt = null;
                 header("Location:./admin.php");
+}catch(Exception $e){
+        echo "Error";
+        echo $e->getMessage();
+}
 ?>
